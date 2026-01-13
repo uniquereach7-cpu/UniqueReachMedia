@@ -1,0 +1,25 @@
+<header class="top-bar" *ngIf="showHeader">
+  <div class="brand">
+    <a href="/home" style="text-decoration: none;">
+      <img src="assets/logo400.png" alt="Company Logo" class="logo animated-logo" />
+    </a>
+  </div>
+
+  <!-- Hamburger button -->
+  <div class="menu-toggle" (click)="toggleMenu()">
+    &#9776;
+  </div>
+
+  <!-- Collapsible menu -->
+  <nav class="nav-links" [class.open]="menuOpen">
+    <!-- ✅ Home link only for mobile/tablet -->
+    <a href="/home" class="mobile-only" (click)="closeMenu()">Home <span class="emoji">🏠</span></a>
+
+    <p><a href="tel:+916281497780" (click)="closeMenu()">Call<span class="emoji">📞</span></a></p>
+    <a href="/about-us" (click)="closeMenu()">About Us <span class="emoji">💡</span></a>
+    <a href="/services" (click)="closeMenu()">Services <span class="emoji">⚡</span></a>
+    <a href="assets/Unique Reach Portfolio.pdf" target="_blank" rel="noopener noreferrer" (click)="closeMenu()">Our Work <span class="emoji">📁</span></a>
+    <a href="/contact-us" (click)="closeMenu()">Contact Us <span class="emoji">📧</span></a>
+    <a href="/blogs" (click)="closeMenu()">Blogs <span class="emoji">✍</span></a>
+  </nav>
+</header>

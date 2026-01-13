@@ -1,0 +1,14 @@
+<div class="blog-container">
+  <div class="blog-grid">
+    <div class="blog-card" *ngFor="let blog of blogs">
+      <a [routerLink]="blog.link">
+        <img [src]="blog.imageUrl" [alt]="blog.title" />
+      </a>
+      <div class="blog-info">
+        <h2>{{ blog.title }}</h2>
+        <p>{{ blog.excerpt }}</p>
+        <a [routerLink]="blog.link">Read More</a>
+      </div>
+    </div>
+  </div>
+</div>

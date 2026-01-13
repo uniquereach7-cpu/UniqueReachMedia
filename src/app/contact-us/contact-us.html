@@ -1,0 +1,85 @@
+<div class="contact-container">
+  <div class="contact-info">
+    <div class="info-section">
+      <h2><span class="emoji">📌</span> Office Address</h2>
+      <p>
+        Unique Reach Media<br />
+        11th floor, Vamsiram Granules, Kondapur,<br />
+        Hyderabad - 500033
+      </p>
+    </div>
+
+    <div class="info-section">
+      <h2><span class="emoji">📞</span> Call Us</h2>
+      <p>
+        <a href="tel:+916281497780" style="text-decoration: none;">+91 6281497780</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="contact-form">
+    <h2>Contact Us</h2>
+
+    <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm" novalidate>
+      <input
+        type="text"
+        name="name"
+        [(ngModel)]="name"
+        placeholder="Your Name"
+        required
+        #nameField="ngModel"
+      />
+      <div *ngIf="nameField.invalid && nameField.touched" class="error-msg">
+        Name is required.
+      </div>
+
+      <input
+        type="email"
+        name="email"
+        [(ngModel)]="email"
+        placeholder="Your Email"
+        required
+        #emailField="ngModel"
+      />
+      <div *ngIf="emailField.invalid && emailField.touched" class="error-msg">
+        Valid email is required.
+      </div>
+
+      <input
+        type="tel"
+        name="phone"
+        [(ngModel)]="phone"
+        placeholder="Your Phone Number"
+        required
+        pattern="^[0-9]{10}$"
+        #phoneField="ngModel"
+      />
+      <div *ngIf="phoneField.invalid && phoneField.touched" class="error-msg">
+        Enter a valid 10-digit phone number.
+      </div>
+
+      <textarea
+        name="message"
+        [(ngModel)]="message"
+        placeholder="Your Message"
+        required
+        #messageField="ngModel"
+      ></textarea>
+      <div *ngIf="messageField.invalid && messageField.touched" class="error-msg">
+        Message is required.
+      </div>
+
+      <button type="submit" [disabled]="!contactForm.form.valid">Send Message</button>
+
+      <!-- Success Message -->
+      <p *ngIf="successMessageShown" class="success-msg">
+        ✅ Thank you for contacting us! We’ll get back to you shortly.
+      </p>
+
+      <!-- Error Message -->
+      <p *ngIf="errorMessageShown" class="error-msg">
+        ❌ Something went wrong. Please try again later.
+      </p>
+    </form>
+  </div>
+</div>

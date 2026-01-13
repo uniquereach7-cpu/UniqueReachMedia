@@ -1,0 +1,10 @@
+<div class="form-wrapper">
+  <h2>Contact Us</h2>
+  <form #contactForm="ngForm" (ngSubmit)="sendEmail(contactForm)">
+    <input type="text" name="name" ngModel placeholder="Your Name" required />
+    <input type="email" name="email" ngModel placeholder="Your Email" required />
+    <input type="text" name="phone" ngModel placeholder="Phone Number" required />
+    <textarea name="message" ngModel placeholder="Your Coupon Code" rows="4" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</div>

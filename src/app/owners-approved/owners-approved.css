@@ -1,0 +1,57 @@
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.form-wrapper {
+  background: linear-gradient(-45deg, #fc466b, #3f5efb, #ff8a00, #4facfe);
+  background-size: 400% 400%;
+  animation: gradientBG 12s ease infinite;
+  padding: 40px;
+  max-width: 500px;
+  margin: 50px auto;
+  border-radius: 20px;
+  color: #fff;
+  box-shadow: 0 0 30px rgba(0,0,0,0.2);
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input, textarea {
+  padding: 12px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+input:focus, textarea:focus {
+  background: #ffffffcc;
+  color: #333;
+}
+
+button {
+  padding: 12px;
+  background: #fff;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background: #000;
+  color: #fff;
+}

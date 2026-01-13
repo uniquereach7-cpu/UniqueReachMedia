@@ -1,0 +1,134 @@
+.site-footer {
+  background: 		#d3cce3;
+  color: black;
+  padding: 20px 20px 0px;
+  font-family: Arial, sans-serif;
+  margin-top: 20px;
+  padding-top: 10px;
+}
+
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+}
+
+.footer-section {
+  flex: 1 1 200px;
+  min-width: 200px;
+}
+
+.footer-logo {
+  height: 60px;
+  margin-bottom: 10px;
+  border-radius: 75px; /* Moved from inline */
+}
+
+/* Style for all footer links in Services and Company sections */
+.footer-section a {
+  color: black;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.footer-section a:hover {
+  color: coral;
+  text-decoration: none;
+}
+
+.social-links {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+  text-decoration: none;
+}
+
+.social-links img {
+  height: 24px;
+  transition: transform 0.2s ease; /* added a subtle hover effect */
+}
+
+.social-links img:hover {
+  transform: scale(1.1); /* optional zoom-in on hover */
+}
+
+.footer-bottom {
+  padding-top: 20px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.footer-legal {
+  margin-top: 10px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.footer-legal a {
+  color: white;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-legal a:hover {
+  color: white;
+}
+
+/* Phone icon link style */
+#Call {
+  margin-top: -2px; /* Fixed invalid padding-top */
+  text-decoration: none;
+  font-size: 22px;
+  color: #f0f0f0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .footer-top {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .footer-section {
+    min-width: auto;
+  }
+
+  .footer-logo {
+    height: 50px;
+  }
+
+  .footer-legal {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+
+.footer-section ul {
+  list-style-position: inside; /* Makes bullet stay next to text */
+  padding-left: 0; /* Removes default left padding */
+  margin: 0; /* Optional: removes default margin */
+  text-align: left; /* Ensures bullets align even when centered on mobile */
+}
+
+.footer-section li {
+  margin-bottom: 8px; /* Optional: adds spacing between list items */
+}

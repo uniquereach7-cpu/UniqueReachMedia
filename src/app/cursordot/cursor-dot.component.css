@@ -1,0 +1,28 @@
+.cursor-dot{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 999999;
+  transform: translate3d(-100px,-100px,0);
+  will-change: transform;
+  background: #ff5001;
+  opacity: 0.9;
+}
+
+.cursor-dot.is-hover{
+  transform: translate3d(var(--x), var(--y), 0) scale(1.8);
+  opacity: 0.75;
+}
+
+.cursor-dot.is-down{
+  transform: translate3d(var(--x), var(--y), 0) scale(0.8);
+  opacity: 1;
+}
+
+@media (hover: none){
+  .cursor-dot{ display:none; }
+}

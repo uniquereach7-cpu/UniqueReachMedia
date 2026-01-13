@@ -1,0 +1,23 @@
+<section class="services-header">
+  <h1>Services Built to Grow Your Brand</h1>
+  <p class="styled-paragraph">
+    At <a href="assets/Unique Reach Portfolio.pdf" target="_blank" id="urm"><strong>Unique Reach Media</strong></a>, <i>we don’t just build brands — we bring them to life.</i><br><br>
+    <i>We believe every business has a story worth telling, and we’re here to help you tell yours with clarity, creativity, and conviction.
+    From strategy to execution, we craft authentic brand identities that reflect who you are and where you’re headed.</i><br><br>
+    <i>Every brand is different — and so is our approach. We work hand-in-hand with you as growth partners, solving challenges with smart ideas, bold designs, and measurable results.
+    Because your brand deserves more than ordinary — it deserves to be unforgettable.</i>
+  </p>
+</section>
+
+
+<section class="services-list">
+  <div class="service-block" *ngFor="let service of services; let i = index" [ngClass]="{ 'reverse': i % 2 !== 0 }">
+    <div class="service-image">
+      <img [src]="service.icon" [alt]="service.title" />
+    </div>
+    <div class="service-content">
+      <h2>{{ service.title }}</h2>
+      <p>{{ service.description }}</p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,412 @@
+a,p,b,li,blockquote
+ {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+
+/* Apply Roboto to headings and other bold UI elements */
+h1, h2, h3, h4, h5, h6,
+.sidebar-title,
+.section-heading,
+.site-footer h4,
+.footer-section h4 {
+  font-family: 'Staatliches', sans-serif;
+  font-weight: 600;
+}
+
+.about-page {
+  padding: 40px 5%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+  /* background: #f9f9f9; */
+}
+
+.section-header {
+  max-width: 1200px;
+  margin: 0 auto 60px auto;
+  text-align: center;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.section-header p {
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: auto;
+  line-height: 1.6;
+}
+#urm{
+  color:rgb(250, 90, 90);
+  text-decoration: none;
+}
+
+/* OUR STORY SECTION */
+.our-story-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  position: relative;
+}
+
+.story-heading {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #490b89;
+  text-align: center;
+}
+
+.story-content {
+  overflow: hidden;
+  position: relative;
+}
+
+.story-paragraph {
+  font-size: 1.15rem;
+  line-height: 1.9;
+  max-width: 10000px;
+  color: #333;
+  white-space: pre-wrap;
+  position: centre;
+  overflow:visible;
+}
+
+.story-line {
+  opacity: 0;
+  transform: translateX(-40px);
+  animation: fadeSlideIn 0.6s ease-out forwards;
+}
+
+.story-line:nth-child(1) { animation-delay: 0.4s; }
+.story-line:nth-child(2) { animation-delay: 0.9s; }
+.story-line:nth-child(3) { animation-delay: 1.4s; }
+.story-line:nth-child(4) { animation-delay: 1.9s; }
+.story-line:nth-child(5) { animation-delay: 2.4s; }
+.story-line:nth-child(6) { animation-delay: 2.9s; }
+.story-line:nth-child(7) { animation-delay: 3.4s; }
+.story-line:nth-child(8) { animation-delay: 3.9s; }
+
+.blink-cursor::after {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 1.2em;
+  background: #5e23b6;
+  animation: blink 1s step-end infinite;
+  vertical-align: bottom;
+  margin-left: 4px;
+}
+
+@keyframes fadeSlideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* MARKETS SECTION */
+.markets-section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.market-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+/* Floating animation keyframes */
+@keyframes floatUpDown {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.market-item {
+  background: #fff;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  font-weight: 500;
+  border-radius: 8px;
+
+  /* Floating animation */
+  animation: floatUpDown 2s ease-in-out infinite;
+}
+
+/* Staggered delays for a flowing effect */
+.market-item:nth-child(1) {
+  animation-delay: 0s;
+}
+.market-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.market-item:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.market-item:nth-child(4) {
+  animation-delay: 0.6s;
+}
+.market-item:nth-child(5) {
+  animation-delay: 0.8s;
+}
+.market-item:nth-child(6) {
+  animation-delay: 1s;
+}
+/* Add more if needed */
+
+.market-row-center {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+
+/* VMV Section */
+.vision-mission-values {
+  display: flex;
+  flex-wrap: nowrap; /* force them in one row */
+  gap: 60px;
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 20px;
+  justify-content: space-between;
+}
+
+.vmv-box {
+  position: relative;
+  flex: 1 1 0; /* all boxes take equal width */
+  background: #eadfee; /* your required color */
+  padding: 30px;
+  /* border-radius: 8px; */
+  transition: background-color 0.4s ease, color 0.4s ease;
+  overflow: hidden;
+  box-sizing: border-box; /* ensures padding doesn't break layout */
+}
+
+
+.vmv-box h3 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.vmv-box p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  transition: color 0.3s ease;
+}
+
+.emoji {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  font-size: 2.5rem;
+  opacity: 0;
+  transform: scale(0.3);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.vmv-box:hover .emoji {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* 🎨 Section-specific styles */
+.vision:hover {
+  background-color: #f0f8ff;
+}
+
+.vision:hover h3,
+.vision:hover p {
+  color: red;
+}
+
+.mission:hover {
+  background-color: #e8f5e9;
+}
+
+.mission:hover h3,
+.mission:hover p {
+  color: blue;
+}
+
+.values:hover {
+  background-color: #fff3e0;
+}
+
+.values:hover h3,
+.values:hover p {
+  color: rgb(3, 110, 3);
+}
+
+/* responsiveness for vmv section */
+@media (max-width: 1024px) {
+  .vision-mission-values {
+    flex-wrap: nowrap;
+    gap: 30px; /* reduce gap for smaller screens */
+    padding: 15px;
+  }
+  .vmv-box {
+    padding: 20px;
+  }
+}
+
+/* Mobile (below 768px) → stack 1 by 1 */
+@media (max-width: 768px) {
+  .vision-mission-values {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .vmv-box {
+    flex: 1 1 100%; /* take full width */
+  }
+}
+
+
+/* MEET OUR TEAM SECTION */
+.meet-team-section {
+  padding: 60px 5%;
+  background-color: transparent;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.team-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  gap: 80px;
+}
+
+.team-photo {
+  flex: 1 1 30%;
+}
+
+.team-photo img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.team-content {
+  flex: 1 1 55%;
+}
+
+.team-content h2 {
+  font-size: 2rem;
+  color: #490b89;
+  margin-bottom: 20px;
+}
+
+.team-content p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+.view-team-btn {
+  margin-top: 20px;
+  padding: 12px 28px;
+  font-size: 1rem;
+  background-color: #490b89;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.view-team-btn:hover {
+  background-color: #481c8c;
+  transform: scale(1.05);
+}
+.site-footer {
+  background: black;
+  color: #f0f0f0;
+  padding: 60px 20px;
+  font-family: Arial, sans-serif;
+}
+/* responsive code */
+@media (max-width: 1024px) {
+  .section-header h2,
+  .story-heading,
+  .team-content h2 {
+    font-size: 2rem;
+  }
+  .section-header p,
+  .story-paragraph,
+  .team-content p,
+  .vmv-box p,
+  .market-item {
+    font-size: 0.98rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-page {
+    padding: 20px 3%;
+  }
+
+  .section-header h2,
+  .story-heading,
+  .team-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .section-header p,
+  .story-paragraph,
+  .team-content p,
+  .vmv-box p,
+  .market-item {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .market-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vision-mission-values {
+    flex-direction: column;
+    padding: 10px;
+    gap: 16px;
+  }
+
+  .vmv-box {
+    padding: 20px;
+  }
+
+  .team-wrapper {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .team-photo {
+    flex: 1 1 100%;
+  }
+
+  .team-content {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .view-team-btn {
+    width: 100%;
+    padding: 10px;
+  }
+}

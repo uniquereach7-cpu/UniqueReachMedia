@@ -1,0 +1,272 @@
+ <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+ 
+ <!-- home.html -->
+<section class="hero-banner reveal" id="heroBanner">
+  <div class="video-wrapper">
+    <video
+      id="bgVideo"
+      #bgVideo
+      class="hero-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster="assets/hero-poster.jpg"
+    >
+      <source src="assets/herovideo1.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  
+  <div class="gloss-overlay"></div>
+
+ 
+  <div class="hero-content">
+    <div class="hero-left">
+
+      <h2 class="kicker">WE CREATE</h2>
+
+     
+      <h1 class="headline">
+        <i>AWESOME
+        <span class="headline-block">Stuff</span></i>
+      </h1>
+<hr>
+      <div class="meta-row">
+        <div class="reviews">Our Customers love's to work with us</div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="vertical-nav" aria-hidden="true">
+    <ul>
+      <li><a routerLink="/process">Our Process</a></li>
+      <li><a routerLink="/tech">Technologies</a></li>
+      <li><a routerLink="/clients">Our Clients</a></li>
+      <li><a routerLink="/portfolio">Portfolio</a></li>
+      <li><a routerLink="/contact">Contact Us</a></li>
+    </ul>
+  </aside>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <i><span>VALUE-ADDED  </span>
+    <span>DATA-DRIVEN  </span>
+    <span>USER-FOCUSED  </span>
+    <span>VALUE-BASED  </span>
+    <span>DATA-DRIVEN  </span>
+    <span>USER-FOCUSED  </span>
+    <span>VALUE-BASED  </span></i>
+  </div>
+</div>
+
+
+
+
+
+<app-services-snapshot></app-services-snapshot>
+<app-creative-process></app-creative-process>
+
+<!-- Achievements + Process combined section -->
+<!-- Achievements + Process combined section -->
+<section class="achievements-process-section reveal">
+  <div class="left-col">
+    <div class="achievements-header">
+      <h2>Our Achievements</h2>
+      <p>We take pride in delivering outstanding results that speak volumes</p>
+    </div>
+
+    <div class="achievements-grid">
+      <div class="achievement-card" *ngFor="let s of stats">
+
+        <div class="card-top">
+
+          <div class="value">
+            <h3>
+              <span class="counter">{{ currentCounts[s.key] || 0 }}</span>
+              <span class="suffix">{{ s.suffix }}</span>
+            </h3>
+          </div>
+        </div>
+
+        <b><p class="label">{{ s.label }}</p></b>
+
+        <!-- FLOATING GIF (replaces blue dot) -->
+        <div class="floating-gif" *ngIf="s.showFloating">
+          <img
+            [src]="s.gifUrl"
+            alt=""
+            loading="lazy"
+            class="decor-gif"
+          />
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+ <section class="consult-section" style="background-color:#eadfee; border-radius: 90px;" >
+  <div class="consult-left fade-left reveal">
+    <h2>Who Should Consult Us?</h2>
+  </div>
+  <div class="consult-right fade-right reveal">
+    <ul>
+      <li class="reveal">Businesses ready to grow their online sales and leads</li>
+      <li class="reveal">Brands wanting smart, data-backed marketing strategies</li>
+      <li class="reveal">Startups building their digital presence from scratch</li>
+      <li class="reveal">Companies struggling with low traffic or poor engagement</li>
+      <li class="reveal">Anyone tired of wasting money on ads that don’t deliver</li>
+    </ul>
+    <p class="final-call reveal fade-right">
+      <span class="italic-highlight">Are you one among the above?</span>
+      <a routerLink="/contact-us" class="consult-btn">Consult Us</a>
+    </p>
+  </div>
+  <div class="animated-bg"></div>
+</section>
+
+
+
+<section class="testimonials reveal">
+  <h2>Our Impact, in Their Words</h2>
+  <div class="slider-wrapper" #wrapper>
+    <div class="slider" id="slider">
+      <div class="testimonial-card" *ngFor="let testimonial of repeatedTestimonials">
+        <img [src]="testimonial.image" [alt]="testimonial.author">
+        <blockquote>{{ testimonial.quote }}</blockquote>
+        <p class="author">– {{ testimonial.author }}, <span>{{ testimonial.position }}</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="achievements reveal">
+<h2 class="achievements-header" style="font-size: 2.5rem;">Our Clients</h2>
+  <!-- Desktop: Scrolling logos -->
+<section class="clients desktop-only">
+  <div class="client-logos">
+    <img src="assets/Aarnis.png" alt="Client 1">
+    <img src="assets/Einstein.png" alt="Client 2">
+    <img src="assets/Gateway.png" alt="Client 3">
+    <img src="assets/Arey.png" alt="Client 4">
+    <img src="assets/Kimestu.png" alt="Client 5">
+    <img src="assets/Pranalika.png" alt="Client 6">
+    <img src="assets/Urban seeds.png" alt="Client 7">
+    <img src="assets/Wash & Go.png" alt="Client 8">
+    <img src="assets/APF.png" alt="Client 9">
+    <img src="assets/Fitness & More.png" alt="Client 9">
+     <img src="assets/Matargashti.png" alt="Client 9">
+    
+    <!-- Repeat for scrolling -->
+    <img src="assets/Aarnis.png" alt="Client 1">
+    <img src="assets/Einstein.png" alt="Client 2">
+    <img src="assets/Gateway.png" alt="Client 3">
+    <img src="assets/Arey.png" alt="Client 4">
+    <img src="assets/Kimestu.png" alt="Client 5">
+    <img src="assets/Pranalika.png" alt="Client 6">
+    <img src="assets/Urban seeds.png" alt="Client 7">
+    <img src="assets/Wash & Go.png" alt="Client 8">
+    <img src="assets/APF.png" alt="Client 9">
+    <img src="assets/Fitness & More.png" alt="Client 9">
+     <img src="assets/Matargashtis.png" alt="Client 9">
+  </div>
+</section>
+
+<!-- Mobile: Static logos -->
+<section class="clients mobile-only ">
+  <div class="client-logos-static">
+    <img src="assets/Arey.png" alt="Client 1">
+    <img src="assets/Einstein.png" alt="Client 2">
+    <img src="assets/Gateway.png" alt="Client 3">
+    <img src="assets/Pranalika.png" alt="Client 4">
+    <img src="assets/Kimestu.png" alt="Client 5">
+    <img src="assets/Aarnis.png" alt="Client 6">
+    <img src="assets/Wash & Go.png" alt="Client 7">
+    <img src="assets/Urban seeds.png" alt="Client 8">
+    <img src="assets/APF.png" alt="Client 9">
+    <img src="assets/Fitness & More.png" alt="Client 9">
+     <img src="assets/Matargashti.png" alt="Client 9">
+  </div>
+</section>
+</section>
+
+
+
+<section class="achievements reveal">
+  <div class="achievements-header">
+    <h2>Our Achievements</h2>
+    <p>We take pride in delivering outstanding results that speak volumes</p>
+  </div>
+  <div class="achievements-grid">
+    <div class="achievement-card">
+      <div class="icon">🚀</div>
+      <h3><span class="counter" data-target="150">100</span>+</h3>
+      <p>Campaigns Launched</p>
+    </div>
+    <div class="achievement-card">
+      <div class="icon">💰</div>
+      <h3><span class="counter" data-target="500">20L</span>+</h3>
+      <p>Revenue Generated</p>
+    </div>
+    <div class="achievement-card">
+      <div class="icon">👥</div>
+      <h3><span class="counter" data-target="2000">25</span>+</h3>
+      <p>Clientele Served</p>
+    </div>
+    <div class="achievement-card">
+      <div class="icon">🌍</div>
+      <h3><span class="counter" data-target="50">15</span>+</h3>
+      <p>Markets Tapped</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let currentSlide = 0;
+  let isScrolling = false;
+
+  function goToSlide(index) {
+    if (index < 0 || index >= slides.length) return;
+    isScrolling = true;
+    slides[index].scrollIntoView({ behavior: 'smooth' });
+    currentSlide = index;
+    setTimeout(() => isScrolling = false, 1000);
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (isScrolling) return;
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+      goToSlide(currentSlide + 1);
+    } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+      goToSlide(currentSlide - 1);
+    }
+  });
+
+  document.addEventListener('wheel', (e) => {
+    if (isScrolling) return;
+    if (e.deltaY > 50) {
+      goToSlide(currentSlide + 1);
+    } else if (e.deltaY < -50) {
+      goToSlide(currentSlide - 1);
+    }
+  });
+
+  // Optional: Touch support
+  let touchStartY = 0;
+  document.addEventListener('touchstart', (e) => {
+    touchStartY = e.touches[0].clientY;
+  });
+  document.addEventListener('touchend', (e) => {
+    const deltaY = touchStartY - e.changedTouches[0].clientY;
+    if (deltaY > 50) goToSlide(currentSlide + 1);
+    if (deltaY < -50) goToSlide(currentSlide - 1);
+  });
+</script>
+

@@ -1,0 +1,40 @@
+/* Apply Poppins to all base/body content */
+body,a {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+
+/* Apply Roboto to headings and other bold UI elements */
+h1, h2, h3, h4, h5, h6,
+.sidebar-title,
+.section-heading,
+.site-footer h4,
+.footer-section h4 {
+  font-family: 'Staatliches', sans-serif;
+  font-weight: 600;
+}
+body {
+  background-color: whitesmoke;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-position: center;
+  /* background-image: url('assets/BG.png'); <-- Correct syntax */
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.1); /* adjust opacity here */
+  pointer-events: none;
+}
+html, body {
+  transform: none !important;
+  filter: none !important;
+  perspective: none !important;
+  will-change: auto !important;
+}
+
+app-root, app-root > * {
+  transform: none !important;
+}

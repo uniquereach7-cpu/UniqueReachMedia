@@ -1,0 +1,51 @@
+.blog-container {
+  padding: 2rem;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.blog-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  background-color: #fff;
+}
+
+.blog-card:hover {
+  transform: scale(1.02);
+}
+
+.blog-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.blog-info {
+  padding: 1rem;
+}
+
+.blog-info h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.blog-info p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.blog-info a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
