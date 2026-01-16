@@ -10,11 +10,14 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ServicesSnapshotComponent } from './sections/services/servicesection.component';
 import { CreativeProcessComponent } from './sections/process/creative-process.component';
+import { gridhand } from './sections/gridhand/gridhand.component';
+import { handstatic } from './sections/handstatic/handstatic.component';
+
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterModule, CommonModule, ServicesSnapshotComponent, CreativeProcessComponent],
+  imports: [RouterModule, CommonModule, ServicesSnapshotComponent, CreativeProcessComponent,gridhand,handstatic],
   templateUrl: './home.html',
   styleUrls: ['./home.css']
 })
