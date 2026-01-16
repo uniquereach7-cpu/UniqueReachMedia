@@ -33,10 +33,10 @@
   user-select:none;
 
   /* screen placement knobs (starting values close to your ref CSS) */
-  --screen-left: 50.3%;
-  --screen-top: 4.6%;
-  --screen-w: 19.2%;
-  --screen-h: 62.8%;
+  --screen-left: 50.8%;
+  --screen-top:-0.6%;
+  --screen-w: 20.2%;
+  --screen-h: 72.8%;
   --screen-r: 30px;
   --screen-inset: 5px;
 }
@@ -78,19 +78,49 @@
   object-position:center;
   border-radius: calc(var(--screen-r) - var(--screen-inset));
 }
-
+/* Replace ONLY your current mobile block with this */
 /* mobile */
 @media (max-width: 768px){
-  .hand-pin{ min-height:200vh; }
+  .hand-pin{ min-height: 220vh; }
+
+  .hand-pin__sticky{
+    justify-content: flex-end;
+    align-items: flex-end;              /* anchor to bottom like the reference */
+    padding-right: clamp(10px, 4vw, 20px);
+    padding-bottom: clamp(10px, 7vh, 40px);
+  }
 
   .hand-pin__stage{
-    width:min(760px, 94vw);
+    /* make the hand + phone physically larger on mobile */
+    width: min(980px, 175vw);
 
-    --zoom: 1.22;
-    --tx: -2%;
-    --ty: 2%;
+    /* zoom + push to the right/bottom */
+    --zoom: 1.55;
+    --tx: 22%;
+    --ty: 11%;
+    transform-origin: 72% 70%;
 
-    --screen-r: 30px;
-    --screen-inset: 5px;
+    /* make the video window slightly bigger */
+    --screen-w: 21.2%;
+    --screen-h: 74.5%;
+    --screen-top: -0.4%;
+
+    /* tighter inset so the video fills more */
+    --screen-r: 26px;
+    --screen-inset: 3px;
+  }
+}
+
+/* very small phones */
+@media (max-width: 420px){
+  .hand-pin__stage{
+    width: min(1040px, 200vw);
+    --zoom: 1.62;
+    --tx: 25%;
+    --ty: 13%;
+    transform-origin: 74% 72%;
+
+    --screen-r: 24px;
+    --screen-inset: 2px;
   }
 }
