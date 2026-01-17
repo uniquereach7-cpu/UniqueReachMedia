@@ -78,49 +78,76 @@
   object-position:center;
   border-radius: calc(var(--screen-r) - var(--screen-inset));
 }
-/* Replace ONLY your current mobile block with this */
-/* mobile */
+
+/* mobile: lock sticky + bottom-right placement + bigger phone/video */
 @media (max-width: 768px){
-  .hand-pin{ min-height: 220vh; }
+  .hand-pin{
+    /* longer scroll section so it follows you */
+    min-height: 250svh;
+    margin: 0;
+    padding: 0;
+  }
 
   .hand-pin__sticky{
-    justify-content: flex-end;
-    align-items: flex-end;              /* anchor to bottom like the reference */
-    padding-right: clamp(10px, 4vw, 20px);
-    padding-bottom: clamp(10px, 7vh, 40px);
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    display: block;
+    overflow: hidden;
   }
 
   .hand-pin__stage{
-    /* make the hand + phone physically larger on mobile */
-    width: min(980px, 175vw);
+    /* absolute positioning to place in bottom-right like reference */
+    position: absolute;
+    right: -65vw;
+    bottom: -8svh;
 
-    /* zoom + push to the right/bottom */
-    --zoom: 1.55;
-    --tx: 22%;
-    --ty: 11%;
-    transform-origin: 72% 70%;
+    width: min(1100px, 210vw);
+    max-width: none;
 
-    /* make the video window slightly bigger */
-    --screen-w: 21.2%;
+    /* minimal zoom for mobile */
+    --tx: 0px;
+    --ty: 0px;
+    --zoom: 1.05;
+    transform: translate3d(var(--tx), var(--ty), 0) scale(var(--zoom));
+    transform-origin: 75% 75%;
+
+    /* adjust screen window for mobile - tighter fit */
+    --screen-left: 50.8%;
+    --screen-top: -0.2%;
+    --screen-w: 21.8%;
     --screen-h: 74.5%;
-    --screen-top: -0.4%;
-
-    /* tighter inset so the video fills more */
-    --screen-r: 26px;
+    --screen-r: 24px;
     --screen-inset: 3px;
+  }
+
+  .hand-pin__img{
+    /* makes the hand look cleaner on dark bg */
+    filter: drop-shadow(0 18px 40px rgba(0,0,0,.45));
   }
 }
 
 /* very small phones */
 @media (max-width: 420px){
-  .hand-pin__stage{
-    width: min(1040px, 200vw);
-    --zoom: 1.62;
-    --tx: 25%;
-    --ty: 13%;
-    transform-origin: 74% 72%;
+  .hand-pin{ min-height: 230svh; }
 
-    --screen-r: 24px;
-    --screen-inset: 2px;
+  .hand-pin__stage{
+    right: -75vw;
+    bottom: -10svh;
+    width: min(1000px, 230vw);
+
+    --tx: 0px;
+    --ty: 0px;
+    --zoom: 1.08;
+    transform: translate3d(var(--tx), var(--ty), 0) scale(var(--zoom));
+    transform-origin: 75% 75%;
+
+    /* tighter screen fit for small phones */
+    --screen-left: 50.8%;
+    --screen-top: -0.2%;
+    --screen-w: 21.6%;
+    --screen-h: 74.2%;
+    --screen-r: 22px;
+    --screen-inset: 3px;
   }
 }
