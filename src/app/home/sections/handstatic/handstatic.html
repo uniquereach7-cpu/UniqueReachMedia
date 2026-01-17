@@ -1,12 +1,57 @@
 <!-- dev-hand.component.html -->
 <section class="hand-pin">
   <div class="hand-pin__sticky">
+    <!-- Static Cards Grid (behind hand) -->
+    <div class="hand-pin__cards-grid">
+      <!-- Row 1 -->
+      <div class="hand-pin__card hand-pin__card--left-1">
+        <img src="assets/prototype.png" alt="Health fitness dashboard - Balázs Kétyi on Unsplash" />
+      </div>
+      <div class="hand-pin__card hand-pin__card--left-2">
+        <img src="assets/prototype.png" alt="Health fitness dashboard - Balázs Kétyi on Unsplash" />
+      </div>
+      <div class="hand-pin__card hand-pin__card--right-1">
+        <img src="assets/prototype.png" alt="Health fitness dashboard - Balázs Kétyi on Unsplash" />
+      </div>
+      <div class="hand-pin__card hand-pin__card--right-2">
+        <img src="assets/prototype.png" alt="Health fitness dashboard - Balázs Kétyi on Unsplash" />
+      </div>
+
+      <!-- Row 2 -->
+      <div class="hand-pin__card hand-pin__card--left-3">
+        <img src="assets/prototype.png" alt="Health fitness dashboard - Balázs Kétyi on Unsplash" />
+      </div>
+      <div class="hand-pin__card hand-pin__card--left-4">
+        <img src="assets/prototype.png" alt="Health fitness dashboard - Balázs Kétyi on Unsplash" />
+      </div>
+      <div class="hand-pin__card hand-pin__card--right-3">
+        <img src="assets/prototype.png" alt="Health fitness dashboard - Balázs Kétyi on Unsplash" />
+      </div>
+      <div class="hand-pin__card hand-pin__card--right-4">
+        <img src="assets/prototype.png" alt="Health fitness dashboard - Balázs Kétyi on Unsplash" />
+      </div>
+
+      <!-- Row 3 -->
+      <div class="hand-pin__card hand-pin__card--left-5">
+        <img src="assets/prototype.png" alt="Health fitness dashboard - Balázs Kétyi on Unsplash" />
+      </div>
+      <div class="hand-pin__card hand-pin__card--left-6">
+        <img src="assets/prototype.png" alt="Health fitness dashboard - Balázs Kétyi on Unsplash" />
+      </div>
+      <div class="hand-pin__card hand-pin__card--right-5">
+        <img src="assets/prototype.png" alt="Health fitness dashboard - Balázs Kétyi on Unsplash" />
+      </div>
+      <div class="hand-pin__card hand-pin__card--right-6">
+        <img src="assets/prototype.png" alt="Health fitness dashboard - Balázs Kétyi on Unsplash" />
+      </div>
+    </div>
+
+    <!-- Hand + Phone (above cards) -->
     <div class="hand-pin__stage">
       <!-- video sits UNDER the frame -->
       <div class="hand-pin__screen">
         <!-- if using the TS above, add #phoneVid -->
-<video #phoneVid class="hand-pin__video" src="assets/phone2.mp4" autoplay muted loop playsinline webkit-playsinline></video>
-
+        <video #phoneVid class="hand-pin__video" src="assets/phone2.mp4" autoplay muted loop playsinline webkit-playsinline></video>
       </div>
 
       <!-- frame sits OVER the video -->
