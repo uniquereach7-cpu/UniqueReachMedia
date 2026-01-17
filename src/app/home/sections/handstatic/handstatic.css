@@ -4,12 +4,13 @@
   background:#000;
   min-height:240vh;
   position:relative;
+  overflow-x: hidden;
 }
 
 .hand-pin__sticky{
-  position:sticky;
-  top:0;
-  height:100vh;
+  position:relative;
+  height:auto;
+  min-height: 100vh;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -18,23 +19,32 @@
 
 /* ===== Cards Grid ===== */
 .hand-pin__cards-grid{
-  position:absolute;
-  inset:0;
-  display:grid;
-  grid-template-columns: 1fr 1fr minmax(300px, 400px) 1fr 1fr;
-  grid-template-rows: repeat(3, 1fr);
-  gap: 20px;
-  padding: 40px 60px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1400px, 100%);
+  height: 100%;
+  min-height: 240vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr minmax(320px, 34vw) 1fr 1fr;
+  grid-template-rows: repeat(3, minmax(240px, 1fr));
+  gap: clamp(18px, 2vw, 28px);
+  padding: clamp(80px, 12vh, 140px) clamp(20px, 4vw, 64px);
+  box-sizing: border-box;
   z-index: 1;
   pointer-events: none;
+  align-content: space-between;
 }
 
 .hand-pin__card{
-  border-radius: 16px;
+  border-radius: 28px;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.55);
   background: #1a1a1a;
-  transition: transform 0.3s ease;
+  aspect-ratio: 9 / 16; /* Phone-like aspect ratio */
+  height: 100%;
+  max-height: 480px;
 }
 
 .hand-pin__card img{
@@ -65,14 +75,14 @@
 /* stage = single coordinate system for BOTH image + video */
 .hand-pin__stage{
   position:relative;
-  width:min(1028.5px, 92vw);
+  width:min(860px, 62vw);
   display:block;
   z-index: 10; /* Above cards */
 
   /* zoom and framing */
-  --zoom: 1.38;
-  --tx: -2%;
-  --ty: 2%;
+  --zoom: 1.1;
+  --tx: 0%;
+  --ty: 0%;
   transform: translateX(var(--tx)) translateY(var(--ty)) scale(var(--zoom));
   transform-origin: 50% 45%;
 
@@ -97,6 +107,7 @@
   object-position:center top;
   position:relative;
   z-index:2;
+  filter: drop-shadow(0 22px 46px rgba(0,0,0,0.45));
 }
 
 /* screen window */
@@ -127,11 +138,27 @@
 }
 
 /* tablet: adjust cards grid */
+@media (max-width: 1400px){
+  .hand-pin__cards-grid{
+    grid-template-columns: 1fr 1fr minmax(280px, 36vw) 1fr 1fr;
+    padding: clamp(70px, 10vh, 120px) clamp(18px, 3.5vw, 48px);
+    gap: clamp(16px, 1.8vw, 24px);
+  }
+
+  .hand-pin__card{
+    max-height: 440px;
+  }
+}
+
 @media (max-width: 1200px){
   .hand-pin__cards-grid{
-    grid-template-columns: 1fr minmax(280px, 350px) 1fr;
-    padding: 30px 40px;
-    gap: 16px;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 48vw) minmax(0, 1fr);
+    padding: clamp(60px, 9vh, 110px) clamp(16px, 3vw, 36px);
+    gap: 18px 14px;
+  }
+
+  .hand-pin__card{
+    max-height: 420px;
   }
 
   /* Show only 2 cards per row on tablet (1 left, 1 right) */
@@ -163,9 +190,10 @@
   }
 
   .hand-pin__sticky{
-    position: sticky;
-    top: 0;
-    height: 100svh;
+    position: relative;
+    top: auto;
+    height: auto;
+    min-height: 100svh;
     display: block;
     overflow: hidden;
   }

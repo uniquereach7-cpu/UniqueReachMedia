@@ -1,8 +1,7 @@
 <!-- dev-hand.component.html -->
 <section class="hand-pin">
-  <div class="hand-pin__sticky">
-    <!-- Static Cards Grid (behind hand) -->
-    <div class="hand-pin__cards-grid">
+  <!-- Static Cards Grid (stays in place) -->
+  <div class="hand-pin__cards-grid">
       <!-- Row 1 -->
       <div class="hand-pin__card hand-pin__card--left-1">
         <img src="assets/prototype.png" alt="Health fitness dashboard - Balázs Kétyi on Unsplash" />
@@ -44,9 +43,10 @@
       <div class="hand-pin__card hand-pin__card--right-6">
         <img src="assets/prototype.png" alt="Health fitness dashboard - Balázs Kétyi on Unsplash" />
       </div>
-    </div>
+  </div>
 
-    <!-- Hand + Phone (above cards) -->
+  <!-- Hand + Phone (scrolls down) -->
+  <div class="hand-pin__sticky">
     <div class="hand-pin__stage">
       <!-- video sits UNDER the frame -->
       <div class="hand-pin__screen">
