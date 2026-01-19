@@ -1,303 +1,301 @@
-/* dev-hand.component.css */
 
-.hand-pin{
-  background:#000;
-  min-height:240vh;
-  position:relative;
-  overflow-x: hidden;
+.hand-pin {
+	background: #000;
+	min-height: 240vh;
+	position: relative;
+	overflow-x: hidden;
+	background: #000;
+	min-height: 240vh;
+	position: relative;
+	overflow: visible;
 }
 
-.hand-pin__sticky{
-  position:relative;
-  height:auto;
-  min-height: 100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden; /* crop while zooming */
+.hand-pin__sticky {
+	position: relative;
+	height: auto;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	position: sticky;
+	top: 0;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	z-index: 10;
 }
 
-
-/* ===== Cards Grid ===== */
-.hand-pin__cards-grid{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 240vh;
-  z-index: 1;
-  pointer-events: none;
+.hand-pin__cards-grid {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 240vh;
+	z-index: 1;
+	pointer-events: none;
 }
 
-.hand-pin__card{
-  position: absolute;
-  border-radius: 32px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.7);
-  background: #1a1a1a;
-  width: 340px;
-  height: 600px;
+.hand-pin__card {
+	position: absolute;
+	border-radius: 32px;
+	overflow: hidden;
+	box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+	background: #1a1a1a;
+	width: 340px;
+	height: 600px;
 }
 
-.hand-pin__card img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.hand-pin__card img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
 }
 
-/* Row 1 positioning - matching reference layout */
 .hand-pin__card--left-1 {
-  top: 8vh;
-  left: -7%;
-  transform: translateX(-25%); /* Allow left cutoff */
+	top: 8vh;
+	left: -7%;
+	transform: translateX(-25%);
 }
 
 .hand-pin__card--left-2 {
-  top: 8vh;
-  left: 13%;
+	top: 8vh;
+	left: 13%;
 }
 
 .hand-pin__card--right-1 {
-  top: 8vh;
-  right: 13%;
+	top: 8vh;
+	right: 13%;
 }
 
 .hand-pin__card--right-2 {
-  top: 8vh;
-  right: -7%;
-  transform: translateX(25%); /* Allow right cutoff */
+	top: 8vh;
+	right: -7%;
+	transform: translateX(25%);
 }
 
-/* Row 2 positioning */
 .hand-pin__card--left-3 {
-  top: 85vh;
-  left: -7%;
-  transform: translateX(-25%);
+	top: 85vh;
+	left: -7%;
+	transform: translateX(-25%);
 }
 
 .hand-pin__card--left-4 {
-  top: 85vh;
-  left: 13%;
+	top: 85vh;
+	left: 13%;
 }
 
 .hand-pin__card--right-3 {
-  top: 85vh;
-  right: 13%;
+	top: 85vh;
+	right: 13%;
 }
 
 .hand-pin__card--right-4 {
-  top: 85vh;
-  right: -7%;
-  transform: translateX(25%);
+	top: 85vh;
+	right: -7%;
+	transform: translateX(25%);
 }
 
-/* Row 3 positioning */
 .hand-pin__card--left-5 {
-  top: 162vh;
-  left: -7%;
-  transform: translateX(-25%);
+	top: 162vh;
+	left: -7%;
+	transform: translateX(-25%);
 }
 
 .hand-pin__card--left-6 {
-  top: 162vh;
-  left: 13%;
+	top: 162vh;
+	left: 13%;
 }
 
 .hand-pin__card--right-5 {
-  top: 162vh;
-  right: 13%;
+	top: 162vh;
+	right: 13%;
 }
 
 .hand-pin__card--right-6 {
-  top: 162vh;
-  right: -7%;
-  transform: translateX(25%);
+	top: 162vh;
+	right: -7%;
+	transform: translateX(25%);
 }
 
-/* stage = single coordinate system for BOTH image + video */
-.hand-pin__stage{
-  position:relative;
-  width:min(860px, 62vw);
-  display:block;
-  z-index: 10; /* Above cards */
-
-  /* zoom and framing */
-  --zoom: 1.4;
-  --tx: 0%;
-  --ty: 0%;
-  transform: translateX(var(--tx)) translateY(var(--ty)) scale(var(--zoom));
-  transform-origin: 50% 45%;
-
-  pointer-events:none;
-  user-select:none;
-
-  /* screen placement knobs (starting values close to your ref CSS) */
-  --screen-left: 50.8%;
-  --screen-top:-0.6%;
-  --screen-w: 20.2%;
-  --screen-h: 72.8%;
-  --screen-r: 30px;
-  --screen-inset: 5px;
+.hand-pin__stage {
+	position: relative;
+	width: min(860px,62vw);
+	display: block;
+	z-index: 10;
+	--zoom: 1.4;
+	--tx: 0%;
+	--ty: 0%;
+	transform: translateX(var(--tx)) translateY(var(--ty)) scale(var(--zoom));
+	transform-origin: 50% 45%;
+	pointer-events: none;
+	user-select: none;
+	--screen-left: 50.8%;
+	--screen-top: -0.6%;
+	--screen-w: 20.2%;
+	--screen-h: 72.8%;
+	--screen-r: 30px;
+	--screen-inset: 5px;
 }
 
-/* frame image */
-.hand-pin__img{
-  width:100%;
-  height:auto !important;
-  display:block;
-  object-fit:cover;
-  object-position:center top;
-  position:relative;
-  z-index:2;
-  filter: drop-shadow(0 22px 46px rgba(0,0,0,0.45));
+.hand-pin__img {
+	width: 100%;
+	height: auto !important;
+	display: block;
+	object-fit: cover;
+	object-position: center top;
+	position: relative;
+	z-index: 2;
+	filter: drop-shadow(0 22px 46px rgba(0,0,0,0.45));
 }
 
-/* screen window */
-.hand-pin__screen{
-  position:absolute;
-  left:var(--screen-left);
-  top:var(--screen-top);
-  width:var(--screen-w);
-  height:var(--screen-h);
-  transform: translateX(-50%);
-  border-radius: var(--screen-r);
-  overflow:hidden;
-  z-index:1;
-
-  /* slight inset so video doesn’t bleed into frame */
-  padding: var(--screen-inset);
-  box-sizing:border-box;
+.hand-pin__screen {
+	position: absolute;
+	left: var(--screen-left);
+	top: var(--screen-top);
+	width: var(--screen-w);
+	height: var(--screen-h);
+	transform: translateX(-50%);
+	border-radius: var(--screen-r);
+	overflow: hidden;
+	z-index: 1;
+	padding: var(--screen-inset);
+	box-sizing: border-box;
 }
 
-/* video */
-.hand-pin__video{
-  width:100%;
-  height:100%;
-  display:block;
-  object-fit:cover;
-  object-position:center;
-  border-radius: calc(var(--screen-r) - var(--screen-inset));
+.hand-pin__video {
+	width: 100%;
+	height: 100%;
+	display: block;
+	object-fit: cover;
+	object-position: center;
+	border-radius: calc(var(--screen-r) - var(--screen-inset));
 }
 
-/* tablet: adjust cards grid */
-@media (max-width: 1400px){
-  .hand-pin__cards-grid{
-    grid-template-columns: 1fr 1fr minmax(280px, 36vw) 1fr 1fr;
-    padding: clamp(70px, 10vh, 120px) clamp(18px, 3.5vw, 48px);
-    gap: clamp(16px, 1.8vw, 24px);
-  }
+@media (max-width: 1200px) {
+	.hand-pin__cards-grid {
+		grid-template-columns: minmax(0,1fr) minmax(300px,48vw) minmax(0,1fr);
+		padding: clamp(60px,9vh,110px) clamp(16px,3vw,36px);
+		gap: 18px 14px;
+	}
 
-  .hand-pin__card{
-    max-height: 440px;
-  }
+	.hand-pin__card {
+		max-height: 420px;
+	}
+
+	.hand-pin__card--left-1 {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.hand-pin__card--right-1 {
+		grid-column: 3;
+		grid-row: 1;
+	}
+
+	.hand-pin__card--left-3 {
+		grid-column: 1;
+		grid-row: 2;
+	}
+
+	.hand-pin__card--right-3 {
+		grid-column: 3;
+		grid-row: 2;
+	}
+
+	.hand-pin__card--left-5 {
+		grid-column: 1;
+		grid-row: 3;
+	}
+
+	.hand-pin__card--right-5 {
+		grid-column: 3;
+		grid-row: 3;
+	}
+
+	.hand-pin__card--left-2, .hand-pin__card--left-4, .hand-pin__card--left-6, .hand-pin__card--right-2, .hand-pin__card--right-4, .hand-pin__card--right-6 {
+		display: none;
+	}
 }
 
-@media (max-width: 1200px){
-  .hand-pin__cards-grid{
-    grid-template-columns: minmax(0, 1fr) minmax(300px, 48vw) minmax(0, 1fr);
-    padding: clamp(60px, 9vh, 110px) clamp(16px, 3vw, 36px);
-    gap: 18px 14px;
-  }
+@media (max-width: 1400px) {
+	.hand-pin__cards-grid {
+		grid-template-columns: 1fr 1fr minmax(280px,36vw) 1fr 1fr;
+		padding: clamp(70px,10vh,120px) clamp(18px,3.5vw,48px);
+		gap: clamp(16px,1.8vw,24px);
+	}
 
-  .hand-pin__card{
-    max-height: 420px;
-  }
-
-  /* Show only 2 cards per row on tablet (1 left, 1 right) */
-  .hand-pin__card--left-1  { grid-column: 1; grid-row: 1; }
-  .hand-pin__card--right-1 { grid-column: 3; grid-row: 1; }
-  .hand-pin__card--left-3  { grid-column: 1; grid-row: 2; }
-  .hand-pin__card--right-3 { grid-column: 3; grid-row: 2; }
-  .hand-pin__card--left-5  { grid-column: 1; grid-row: 3; }
-  .hand-pin__card--right-5 { grid-column: 3; grid-row: 3; }
-
-  /* Hide alternate cards on tablet */
-  .hand-pin__card--left-2,
-  .hand-pin__card--left-4,
-  .hand-pin__card--left-6,
-  .hand-pin__card--right-2,
-  .hand-pin__card--right-4,
-  .hand-pin__card--right-6 {
-    display: none;
-  }
+	.hand-pin__card {
+		max-height: 440px;
+	}
 }
 
-/* mobile: lock sticky + bottom-right placement + bigger phone/video */
-@media (max-width: 768px){
-  .hand-pin{
-    /* longer scroll section so it follows you */
-    min-height: 250svh;
-    margin: 0;
-    padding: 0;
-  }
+@media (max-width: 420px) {
+	.hand-pin {
+		min-height: 230svh;
+	}
 
-  .hand-pin__sticky{
-    position: relative;
-    top: auto;
-    height: auto;
-    min-height: 100svh;
-    display: block;
-    overflow: hidden;
-  }
-
-  /* Hide cards on mobile - hand takes full attention */
-  .hand-pin__cards-grid{
-    display: none;
-  }
-
-  .hand-pin__stage{
-    /* absolute positioning to place in bottom-right like reference */
-    position: absolute;
-    right: -65vw;
-    bottom: -8svh;
-
-    width: min(1100px, 210vw);
-    max-width: none;
-
-    /* minimal zoom for mobile */
-    --tx: 0px;
-    --ty: 0px;
-    --zoom: 1.05;
-    transform: translate3d(var(--tx), var(--ty), 0) scale(var(--zoom));
-    transform-origin: 75% 75%;
-
-    /* adjust screen window for mobile - tighter fit */
-    --screen-left: 50.8%;
-    --screen-top: -0.2%;
-    --screen-w: 21.8%;
-    --screen-h: 74.5%;
-    --screen-r: 24px;
-    --screen-inset: 3px;
-  }
-
-  .hand-pin__img{
-    /* makes the hand look cleaner on dark bg */
-    filter: drop-shadow(0 18px 40px rgba(0,0,0,.45));
-  }
+	.hand-pin__stage {
+		right: -75vw;
+		bottom: -10svh;
+		width: min(1000px,230vw);
+		--tx: 0px;
+		--ty: 0px;
+		--zoom: 1.08;
+		transform: translate3d(var(--tx), var(--ty), 0) scale(var(--zoom));
+		transform-origin: 75% 75%;
+		--screen-left: 50.8%;
+		--screen-top: -0.2%;
+		--screen-w: 21.6%;
+		--screen-h: 74.2%;
+		--screen-r: 22px;
+		--screen-inset: 3px;
+	}
 }
 
-/* very small phones */
-@media (max-width: 420px){
-  .hand-pin{ min-height: 230svh; }
+@media (max-width: 768px) {
+	.hand-pin {
+		min-height: 250svh;
+		margin: 0;
+		padding: 0;
+	}
 
-  .hand-pin__stage{
-    right: -75vw;
-    bottom: -10svh;
-    width: min(1000px, 230vw);
+	.hand-pin__sticky {
+		position: relative;
+		top: auto;
+		height: auto;
+		min-height: 100svh;
+		display: block;
+		overflow: hidden;
+	}
 
-    --tx: 0px;
-    --ty: 0px;
-    --zoom: 1.08;
-    transform: translate3d(var(--tx), var(--ty), 0) scale(var(--zoom));
-    transform-origin: 75% 75%;
+	.hand-pin__cards-grid {
+		display: none;
+	}
 
-    /* tighter screen fit for small phones */
-    --screen-left: 50.8%;
-    --screen-top: -0.2%;
-    --screen-w: 21.6%;
-    --screen-h: 74.2%;
-    --screen-r: 22px;
-    --screen-inset: 3px;
-  }
+	.hand-pin__stage {
+		position: absolute;
+		right: -65vw;
+		bottom: -8svh;
+		width: min(1100px,210vw);
+		max-width: none;
+		--tx: 0px;
+		--ty: 0px;
+		--zoom: 1.05;
+		transform: translate3d(var(--tx), var(--ty), 0) scale(var(--zoom));
+		transform-origin: 75% 75%;
+		--screen-left: 50.8%;
+		--screen-top: -0.2%;
+		--screen-w: 21.8%;
+		--screen-h: 74.5%;
+		--screen-r: 24px;
+		--screen-inset: 3px;
+	}
+
+	.hand-pin__img {
+		filter: drop-shadow(0 18px 40px rgba(0,0,0,.45));
+	}
 }
