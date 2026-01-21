@@ -6,8 +6,9 @@ import {
   ViewChild,
   Renderer2
 } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
 import { ServicesSnapshotComponent } from './sections/services/servicesection.component';
 import { CreativeProcessComponent } from './sections/process/creative-process.component';
 import { gridhand } from './sections/gridhand/gridhand.component';
@@ -144,7 +145,9 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   private scrollListener: any = null;
   private loadListener: any = null;
 
-  constructor(private renderer: Renderer2) {}
+  private fragmentSub?: Subscription;
+
+  constructor(private renderer: Renderer2, private route: ActivatedRoute) {}
 
   toggleMobileMenu(): void {
     this.mobileMenuOpen = !this.mobileMenuOpen;
@@ -174,6 +177,16 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
     // initial reveal
     setTimeout(() => this.revealOnScroll(), 40);
+
+    this.fragmentSub = this.route.fragment.subscribe(fragment => {
+      if (!fragment) return;
+      setTimeout(() => {
+        const target = document.getElementById(fragment);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 0);
+    });
   }
 
   ngOnDestroy(): void {
@@ -200,6 +213,8 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       window.removeEventListener('load', this.loadListener);
       this.loadListener = null;
     }
+
+    this.fragmentSub?.unsubscribe();
   }
 
   // ---------------- existing helpers ----------------

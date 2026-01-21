@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 @Component({
   selector: "app-grid-hand",
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterLink],
   templateUrl: "./gridhand.html",
   styleUrls: ["./gridhand.css"],
 })
