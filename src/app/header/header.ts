@@ -1,6 +1,7 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, NavigationEnd, RouterModule } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -9,19 +10,22 @@ import { Router, NavigationEnd, RouterModule } from '@angular/router';
   templateUrl: './header.html',
   styleUrls: ['./header.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnDestroy {
   showHeader = true;
-  menuOpen = false;   // 🔑 track menu state
+  menuOpen = false;
+  private routerSub?: Subscription;
 
   constructor(private router: Router) {
-    this.router.events.subscribe(event => {
+    this.routerSub = this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.showHeader = !event.url.includes('/owners-approved');
+        this.menuOpen = false; // close menu on route change
       }
     });
   }
 
-  toggleMenu(): void {
+  toggleMenu(event: Event): void {
+    event.stopPropagation(); // 🔑 prevents immediate close
     this.menuOpen = !this.menuOpen;
   }
 
@@ -29,12 +33,26 @@ export class HeaderComponent {
     this.menuOpen = false;
   }
 
-  // 🔑 Close menu if clicking anywhere outside nav
+  onFragmentClick(fragment: string): void {
+    this.closeMenu();
+
+    const target = document.getElementById(fragment);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  // Close menu when clicking outside header
   @HostListener('document:click', ['$event'])
-  onClick(event: Event): void {
+  onDocumentClick(event: Event): void {
     const target = event.target as HTMLElement;
-    if (!target.closest('.top-bar')) {
+
+    if (this.menuOpen && !target.closest('app-header')) {
       this.closeMenu();
     }
+  }
+
+  ngOnDestroy(): void {
+    this.routerSub?.unsubscribe();
   }
 }

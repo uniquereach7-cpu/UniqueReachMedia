@@ -4,6 +4,14 @@
 <a href="https://wa.me/916281497780" class="whatsapp-float" target="_blank">
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
 </a>
+<button
+  class="scroll-top"
+  type="button"
+  [class.show]="showScrollTop"
+  (click)="scrollToTop()"
+  aria-label="Scroll to top">
+  <img class="scroll-top__image" src="assets/aicon.png" alt="" />
+</button>
 <router-outlet></router-outlet>
 <app-footer></app-footer>
 <div>

@@ -1,10 +1,21 @@
 /* dev-hand.component.css */
 
-.hand-pin{
-  background:#000;
-  min-height:240vh;
-  position:relative;
+.hand-pin {
+  background-image: url("/assets/phonescrool.png");
+  min-height: 240vh;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
+
+/* Mobile view */
+@media (max-width: 768px) {
+  .hand-pin {
+    background-image: url("/assets/mobilescrol.png");
+  }
+}
+
 
 .hand-pin__sticky{
   position:sticky;
@@ -18,27 +29,29 @@
 
 /* stage = single coordinate system for BOTH image + video */
 .hand-pin__stage{
+	padding-top: 30px;
   position:relative;
   width:min(1028.5px, 92vw);
+  padding-right: 40px;
   display:block;
+  aspect-ratio: auto; /* let the image define height naturally */
 
   /* zoom and framing */
-  --zoom: 1.38;
-  --tx: -2%;
-  --ty: 2%;
-  transform: translateX(var(--tx)) translateY(var(--ty)) scale(var(--zoom));
-  transform-origin: 50% 45%;
+  --zoom: 1.35;
+  transform: scale(var(--zoom));
+  
+  transform-origin: 50% 50%;
 
   pointer-events:none;
   user-select:none;
 
-  /* screen placement knobs (starting values close to your ref CSS) */
-  --screen-left: 50.8%;
-  --screen-top:-0.6%;
-  --screen-w: 20.2%;
-  --screen-h: 72.8%;
+  /* screen placement knobs - adjusted for consistent alignment */
+  --screen-left: 48%;
+  --screen-top: 2.5%;
+  --screen-w: 20.4%;
+  --screen-h: 71.5%;
   --screen-r: 30px;
-  --screen-inset: 5px;
+  --screen-inset: 6px;
 }
 
 /* frame image */
@@ -64,22 +77,29 @@
   overflow:hidden;
   z-index:1;
 
-  /* slight inset so video doesn’t bleed into frame */
+  /* slight inset so video doesn't bleed into frame */
   padding: var(--screen-inset);
   box-sizing:border-box;
+  
+  /* ensure consistent sizing across viewports */
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 /* video */
 .hand-pin__video{
   width:100%;
   height:100%;
+  min-width:100%;
+  min-height:100%;
   display:block;
   object-fit:cover;
-  object-position:center;
+  object-position:center center;
   border-radius: calc(var(--screen-r) - var(--screen-inset));
 }
 
-/* mobile: lock sticky + bottom-right placement + bigger phone/video */
+/* mobile: place the hand/phone on the right like the reference */
 @media (max-width: 768px){
   .hand-pin{
     /* longer scroll section so it follows you */
@@ -97,28 +117,21 @@
   }
 
   .hand-pin__stage{
-    /* absolute positioning to place in bottom-right like reference */
     position: absolute;
-    right: -65vw;
-    bottom: -8svh;
+    /* placement knobs for mobile */
+    right: -28vw;
+    bottom: 6svh;
 
-    width: min(1100px, 210vw);
+    width: min(980px, 170vw);
     max-width: none;
 
-    /* minimal zoom for mobile */
-    --tx: 0px;
-    --ty: 0px;
-    --zoom: 1.05;
-    transform: translate3d(var(--tx), var(--ty), 0) scale(var(--zoom));
-    transform-origin: 75% 75%;
-
     /* adjust screen window for mobile - tighter fit */
-    --screen-left: 50.8%;
-    --screen-top: -0.2%;
-    --screen-w: 21.8%;
-    --screen-h: 74.5%;
+    --screen-left: 50%;
+    --screen-top: 0.5%;
+    --screen-w: 20.4%;
+    --screen-h: 71.5%;
     --screen-r: 24px;
-    --screen-inset: 3px;
+    --screen-inset: 4px;
   }
 
   .hand-pin__img{
@@ -129,25 +142,19 @@
 
 /* very small phones */
 @media (max-width: 420px){
-  .hand-pin{ min-height: 230svh; }
+  .hand-pin{ min-height: 200svh; }
 
   .hand-pin__stage{
-    right: -75vw;
-    bottom: -10svh;
-    width: min(1000px, 230vw);
-
-    --tx: 0px;
-    --ty: 0px;
-    --zoom: 1.08;
-    transform: translate3d(var(--tx), var(--ty), 0) scale(var(--zoom));
-    transform-origin: 75% 75%;
+    right: -46vw;
+    bottom: 20svh;
+    width: min(950px, 185vw);
 
     /* tighter screen fit for small phones */
-    --screen-left: 50.8%;
-    --screen-top: -0.2%;
-    --screen-w: 21.6%;
-    --screen-h: 74.2%;
+    --screen-left: 50%;
+    --screen-top: 4.5%;
+    --screen-w: 20.4%;
+    --screen-h: 71.5%;
     --screen-r: 22px;
-    --screen-inset: 3px;
+    --screen-inset: 4px;
   }
 }

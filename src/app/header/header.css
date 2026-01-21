@@ -1,184 +1,165 @@
-
-/* =========================
-   Reference-style header
-   - Logo left
-   - Centered pill nav
-   - Fixed to top (does not scroll away)
-   ========================= */
-
-   
-:host{
-  position: relative;
-  display: block;
-  z-index: 2000;
-  pointer-events: none; /* Allow clicks to pass through empty space */
-}
-
-/* Fixed bar area (transparent). The pill is the nav itself. */
-.top-bar{
-  position: absolute;
-  top: calc(16px + env(safe-area-inset-top));
-  left: 18px;
-  right: 18px;
-  height: 64px;
-
-  display: flex;
-  align-items: center;
-
+/* Top bar container (background similar to your screenshot) */
+.top-bar {
   background: transparent;
-  z-index: 2000;
-  pointer-events: auto; /* Re-enable clicks on the actual header */
+  padding: 16px 24px;
+  border-radius: 30px;
+  position: relative;
+  z-index: 100;
 }
 
-
-/* Logo left */
-.brand{
+/* inner flex layout */
+.top-bar__inner {
+  max-width: 1380px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
-  flex: 0 0 auto;
+  position: relative;
+  min-height: 60px;
 }
 
-.logo{
-  height: 38px;
-  width: auto;
+/* Logo (left) - no background */
+.brand {
+  position: relative;
+  z-index: 3;
+}
+.brand .logo {
+  height: 65px;
   display: block;
-  filter: drop-shadow(0 10px 26px rgba(0,0,0,0.18));
-}
-
-/* Hamburger hidden on desktop */
-.menu-toggle{
-  display: none;
-  margin-left: auto;
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-
-  align-items: center;
-  justify-content: center;
-
-  background: rgba(255,255,255,0.92);
-  border: 1px solid rgba(255,255,255,0.35);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.16);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-
-  color: #111;
-  font-size: 22px;
-  line-height: 1;
-  cursor: pointer;
   user-select: none;
 }
 
-/* Center pill nav */
-.nav-links{
+/* Centered nav (absolute centering) */
+.main-nav {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  left: 70%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
 
+.main-nav__list {
   display: flex;
+  gap: 120px;
   align-items: center;
-  gap: 22px;
-
-  padding: 12px 22px;
-  border-radius: 999px;
-
-  background: rgba(255,255,255,0.92);
-  border: 1px solid rgba(255,255,255,0.35);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.16);
-
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-}
-
-/* Your nav contains one <p> around Call. Normalize it. */
-.nav-links p{
   margin: 0;
-  display: flex;
+  padding: 12px 36px;
+  background: #ffffff;
+  border-radius: 40px;
+  box-shadow: 0 6px 20px rgba(15, 15, 15, 0.06);
+  list-style: none;
 }
 
-/* Links */
-.nav-links a{
-  color: #111;
+/* Links style */
+.main-nav__list a {
+  color: #111827;
   text-decoration: none;
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.2px;
+  font-weight: 550;
+  font-size: 15px;
+  letter-spacing: 0.1px;
   white-space: nowrap;
-
-  padding: 8px 10px;
-  border-radius: 999px;
-
-  transition: background-color 180ms ease, transform 180ms ease, opacity 180ms ease;
+  display: inline-block;
+  padding: 4px 2px;
 }
 
-.nav-links a:hover{
-  background: rgba(17,17,17,0.06);
+/* Hamburger (hidden on wide screens) */
+.menu-toggle {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  z-index: 5;
+  display: none; /* shown in small screens via media query */
 }
+.menu-toggle:focus {
+  outline: 2px solid rgba(17,24,39,0.12);
+  border-radius: 6px;
+}
+.hamburger {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #111827;
+  position: relative;
+}
+.hamburger::before,
+.hamburger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background: #111827;
+}
+.hamburger::before { top: -7px; }
+.hamburger::after  { top: 7px; }
 
-/* Hide emojis on desktop to match the reference header */
-.nav-links .emoji{
+/* Mobile nav (hidden on large screens) */
+.mobile-nav {
   display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  z-index: 6;
+  flex-direction: column;
+  gap: 8px;
+  transform-origin: top center;
+  transition: all 220ms ease-in-out;
+  opacity: 0;
+  pointer-events: none;
 }
 
-/* Home link only on mobile/tablet */
-.mobile-only{
-  display: none;
+/* when open, show it */
+.mobile-nav.open {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
 }
 
-/* =========================
-   Mobile / tablet
-   ========================= */
-@media (max-width: 900px){
-  .top-bar{
-    left: 12px;
-    right: 12px;
-    height: 56px;
-  }
+/* mobile link style */
+.mobile-nav a {
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #111827;
+  font-weight: 700;
+  background: rgba(255,255,255,0.95);
+  border-radius: 12px;
+  display: block;
+}
 
-  .logo{
-    height: 34px;
-  }
+/* Backdrop overlay for mobile menu */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 10, 15, 0.25);
+  z-index: 1;
+}
 
-  .menu-toggle{
-    display: flex;
-  }
-
-  /* Turn the pill into a dropdown panel */
-  .nav-links{
-    position: fixed;
-    left: 12px;
-    right: 12px;
-    top: calc(72px + env(safe-area-inset-top));
-    transform: none;
-
+/* Responsive rules */
+@media (max-width: 900px) {
+  /* Hide center pill nav and show hamburger */
+  .main-nav__list {
     display: none;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-
-    padding: 14px;
-    border-radius: 18px;
-
-    background: rgba(255,255,255,0.96);
   }
-
-  .nav-links.open{
-    display: flex;
-  }
-
-  .nav-links a{
-    font-size: 15px;
-    padding: 12px 12px;
-    border-radius: 12px;
-  }
-
-  /* Keep emojis only on mobile if you want them */
-  .nav-links .emoji{
-    display: inline-block;
-  }
-
-  .mobile-only{
+  .menu-toggle {
     display: block;
+  }
+
+  /* Keep logo left aligned */
+  .brand {
+    margin-right: 12px;
+  }
+
+  /* position mobile menu under top bar and center content */
+  .mobile-nav {
+    left: 12px;
+    right: 12px;
+    top: calc(100% + 6px);
+  }
+
+  .top-bar {
+    padding: 12px;
   }
 }
