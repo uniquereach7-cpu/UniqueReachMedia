@@ -24,26 +24,7 @@
   display:flex;
   align-items:center;
   justify-content:center;
-  position:relative;
-  z-index:2;
-  pointer-events:none;
-}
-
-.hand-pin__tile{
-  position:relative;
-  width:100%;
-  aspect-ratio: 9 / 16;
-  border-radius: 26px;
-  overflow:hidden;
-  background:#0c0c0c;
-  box-shadow: 0 16px 34px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.06);
-}
-
-.hand-pin__tile img{
-  width:100%;
-  height:100%;
-  display:block;
-  object-fit:cover;
+  overflow:hidden; /* crop while zooming */
 }
 
 /* stage = single coordinate system for BOTH image + video */
@@ -121,22 +102,18 @@
 /* mobile: place the hand/phone on the right like the reference */
 @media (max-width: 768px){
   .hand-pin{
-    padding: 48px 0;
+    /* longer scroll section so it follows you */
+    min-height: 250svh;
+    margin: 0;
+    padding: 0;
   }
 
-  .hand-pin__grid{
-    width: min(720px, 92vw);
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
-  }
-
-  .hand-pin__tile{
-    border-radius: 20px;
-  }
-
-  .hand-pin__phone{
-    grid-column: 2 / 3;
-    grid-row: 1 / span 3;
+  .hand-pin__sticky{
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    display: block;
+    overflow: hidden;
   }
 
   .hand-pin__stage{
@@ -168,12 +145,12 @@
   .hand-pin{ min-height: 200svh; }
 
   .hand-pin__stage{
-    right: -46vw;
+    right: -53vw;
     bottom: 20svh;
     width: min(950px, 185vw);
 
     /* tighter screen fit for small phones */
-    --screen-left: 50%;
+    --screen-left: 47%;
     --screen-top: 4.5%;
     --screen-w: 20.4%;
     --screen-h: 71.5%;
