@@ -1,160 +1,146 @@
-/* dev-hand.component.css */
+:host { display:block; }
 
-.hand-pin {
-  background-image: url("/assets/phonescrool.png");
-  min-height: 240vh;
-  position: relative;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
-/* Mobile view */
-@media (max-width: 768px) {
-  .hand-pin {
-    background-image: url("/assets/mobilescrol.png");
-  }
-}
-
-
-.hand-pin__sticky{
-  position:sticky;
-  top:0;
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden; /* crop while zooming */
-}
-
-/* stage = single coordinate system for BOTH image + video */
-.hand-pin__stage{
-	padding-top: 30px;
-  position:relative;
-  width:min(1028.5px, 92vw);
-  padding-right: 40px;
-  display:block;
-  aspect-ratio: auto; /* let the image define height naturally */
-
-  /* zoom and framing */
-  --zoom: 1.35;
-  transform: scale(var(--zoom));
-  
-  transform-origin: 50% 50%;
-
-  pointer-events:none;
-  user-select:none;
-
-  /* screen placement knobs - adjusted for consistent alignment */
-  --screen-left: 48%;
-  --screen-top: 2.5%;
-  --screen-w: 20.4%;
-  --screen-h: 71.5%;
-  --screen-r: 30px;
-  --screen-inset: 6px;
-}
-
-/* frame image */
-.hand-pin__img{
+.showcase{
   width:100%;
-  height:auto !important;
-  display:block;
-  object-fit:cover;
-  object-position:center top;
+  min-height:100vh;
+  background:#c4c4b0;
+  overflow:hidden;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  display:grid;
+  grid-template-rows: auto 1fr; /* key: remove the giant empty space */
+}
+
+/* cards lane */
+.grid{
   position:relative;
   z-index:2;
+  width:100%;
+  max-width:1400px;
+  margin:0 auto;
+
+  padding: 7vh 24px 0;
+  display:grid;
+  grid-template-columns: repeat(4, minmax(220px, 1fr));
+  gap: clamp(12px, 1.2vw, 18px);
+  align-content:start;
 }
 
-/* screen window */
-.hand-pin__screen{
-  position:absolute;
-  left:var(--screen-left);
-  top:var(--screen-top);
-  width:var(--screen-w);
-  height:var(--screen-h);
-  transform: translateX(-50%);
-  border-radius: var(--screen-r);
-  overflow:hidden;
-  z-index:1;
+.card{ min-width:0; }
 
-  /* slight inset so video doesn't bleed into frame */
-  padding: var(--screen-inset);
-  box-sizing:border-box;
-  
-  /* ensure consistent sizing across viewports */
+.copy{
+  height:48px;
+  padding: 0 6px 8px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.line{
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.line p{
+  margin:0 0 4px 0;
+  font-size:13px;
+  font-weight:650;
+  letter-spacing:0.2px;
+  line-height:1;
+  position:relative;
+  opacity:0.95;
+}
+
+/* phone-like frame */
+.frame{
+  aspect-ratio: 9 / 16;
+  width:100%;
+  border-radius: 26px;
+  padding: 12px;
+  background: rgba(255,255,255,0.25);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.14);
+  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); /* GSAP reveal target */
+  overflow:hidden;
+}
+
+.screen{
+  width:100%;
+  height:100%;
+  border-radius: 18px;
+  overflow:hidden;
+  background:#efeede;
   display:flex;
   align-items:center;
   justify-content:center;
 }
 
-/* video */
-.hand-pin__video{
+.screen img{
   width:100%;
   height:100%;
-  min-width:100%;
-  min-height:100%;
+  object-fit: contain; /* no crop */
+  object-position:center;
   display:block;
-  object-fit:cover;
-  object-position:center center;
-  border-radius: calc(var(--screen-r) - var(--screen-inset));
 }
 
-/* mobile: place the hand/phone on the right like the reference */
-@media (max-width: 768px){
-  .hand-pin{
-    /* longer scroll section so it follows you */
-    min-height: 250svh;
-    margin: 0;
-    padding: 0;
-  }
-
-  .hand-pin__sticky{
-    position: sticky;
-    top: 0;
-    height: 100svh;
-    display: block;
-    overflow: hidden;
-  }
-
-  .hand-pin__stage{
-    position: absolute;
-    /* placement knobs for mobile */
-    right: -28vw;
-    bottom: 6svh;
-
-    width: min(980px, 170vw);
-    max-width: none;
-
-    /* adjust screen window for mobile - tighter fit */
-    --screen-left: 50%;
-    --screen-top: 0.5%;
-    --screen-w: 20.4%;
-    --screen-h: 71.5%;
-    --screen-r: 24px;
-    --screen-inset: 4px;
-  }
-
-  .hand-pin__img{
-    /* makes the hand look cleaner on dark bg */
-    filter: drop-shadow(0 18px 40px rgba(0,0,0,.45));
-  }
+/* title lane sits immediately under cards */
+.title-lane{
+  position:relative;
+  z-index:1;
+  overflow:hidden;
+  display:flex;
+  align-items:flex-start;     /* title appears in the highlighted area, not at the bottom edge */
+  padding-top: clamp(12px, 2vh, 28px);
 }
 
-/* very small phones */
-@media (max-width: 420px){
-  .hand-pin{ min-height: 200svh; }
+/* do NOT pin to bottom; keep it in-flow inside the title lane */
+.title{
+  position:relative;
+  width:100%;
+  display:flex;
+  pointer-events:none;
+}
 
-  .hand-pin__stage{
-    right: -53vw;
-    bottom: 20svh;
-    width: min(950px, 185vw);
+.title-group{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  transform: scale(0.25);
+  transform-origin:center;
+}
 
-    /* tighter screen fit for small phones */
-    --screen-left: 47%;
-    --screen-top: 4.5%;
-    --screen-w: 20.4%;
-    --screen-h: 71.5%;
-    --screen-r: 22px;
-    --screen-inset: 4px;
+.title-left{ position:relative; left:18vw; }
+.title-right{ position:relative; right:18vw; }
+
+.letter{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family: "Times New Roman", Times, serif;
+  font-weight:500;
+  font-size: clamp(72px, 10.8vw, 190px);
+  line-height:0.9;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.letter-inner{ position:relative; }
+
+/* responsive */
+@media (max-width: 1100px){
+  .grid{
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+    padding: 6vh 18px 0;
+    gap: 16px;
   }
+  .title-group{ transform: scale(0.5); }
+  .title-left{ left:14vw; }
+  .title-right{ right:11vw; }
+  .title-lane{ padding-top: 18px; }
+}
+
+@media (max-width: 520px){
+  .grid{
+    grid-template-columns: 1fr;
+    padding: 5vh 14px 0;
+  }
+  .title-lane{ padding-top: 16px; }
 }

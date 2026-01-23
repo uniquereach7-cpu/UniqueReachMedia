@@ -1,16 +1,33 @@
-<!-- dev-hand.component.html -->
-<section class="hand-pin">
-  <div class="hand-pin__sticky">
-    <div class="hand-pin__stage">
-      <!-- video sits UNDER the frame -->
-      <div class="hand-pin__screen">
-        <!-- if using the TS above, add #phoneVid -->
-<video #phoneVid class="hand-pin__video" src="assets/phone2.mp4" autoplay muted loop playsinline webkit-playsinline></video>
-
+<!-- handstatic.html -->
+<section class="showcase" #root>
+  <div class="grid">
+    <article class="card" *ngFor="let c of cards">
+      <div class="copy">
+        <div class="line"><p>{{ c.title }}</p></div>
+        <div class="line"><p>({{ c.subtitle }})</p></div>
       </div>
 
-      <!-- frame sits OVER the video -->
-      <img class="hand-pin__img" src="assets/hand.webp" alt="Hand holding phone" />
+      <div class="frame">
+        <div class="screen">
+          <img [src]="c.img" [alt]="c.title" />
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="title-lane">
+    <div class="title">
+      <div class="title-group title-left">
+        <div class="letter" *ngFor="let ch of leftChars">
+          <div class="letter-inner">{{ ch }}</div>
+        </div>
+      </div>
+
+      <div class="title-group title-right">
+        <div class="letter" *ngFor="let ch of rightChars">
+          <div class="letter-inner">{{ ch }}</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
