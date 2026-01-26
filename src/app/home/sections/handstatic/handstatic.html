@@ -1,31 +1,94 @@
 <!-- handstatic.html -->
-<section class="showcase" #root>
-  <div class="grid">
-    <article class="card" *ngFor="let c of cards">
-      <div class="copy">
-        <div class="line"><p>{{ c.title }}</p></div>
-        <div class="line"><p>({{ c.subtitle }})</p></div>
-      </div>
+<section class="two-worlds" #root>
+  <div class="world world-left">
+    <div class="stack left-stack">
+      <!-- LEFT TOP -->
+      <div class="slot slot-lt">
+        <div
+          class="layer"
+          *ngFor="let s of sets; let i = index"
+          data-slot="lt"
+          [attr.data-set]="i"
+        >
+          <div class="phone">
+            <div class="screen">
+              <img [src]="s.lt.img" [alt]="s.lt.title" />
+            </div>
+          </div>
 
-      <div class="frame">
-        <div class="screen">
-          <img [src]="c.img" [alt]="c.title" />
+          <div class="meta">
+            <div class="name">{{ s.lt.title }}</div>
+            <div class="sub">({{ s.lt.subtitle }})</div>
+          </div>
         </div>
       </div>
-    </article>
+
+      <!-- LEFT BOTTOM -->
+      <div class="slot slot-lb">
+        <div
+          class="layer"
+          *ngFor="let s of sets; let i = index"
+          data-slot="lb"
+          [attr.data-set]="i"
+        >
+          <div class="phone">
+            <div class="screen">
+              <img [src]="s.lb.img" [alt]="s.lb.title" />
+            </div>
+          </div>
+
+          <div class="meta">
+            <div class="name">{{ s.lb.title }}</div>
+            <div class="sub">({{ s.lb.subtitle }})</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="title-lane">
-    <div class="title">
-      <div class="title-group title-left">
-        <div class="letter" *ngFor="let ch of leftChars">
-          <div class="letter-inner">{{ ch }}</div>
+  <div class="void"></div>
+
+  <div class="world world-right">
+    <div class="stack right-stack">
+      <!-- RIGHT TOP -->
+      <div class="slot slot-rt">
+        <div
+          class="layer"
+          *ngFor="let s of sets; let i = index"
+          data-slot="rt"
+          [attr.data-set]="i"
+        >
+          <div class="phone">
+            <div class="screen">
+              <img [src]="s.rt.img" [alt]="s.rt.title" />
+            </div>
+          </div>
+
+          <div class="meta">
+            <div class="name">{{ s.rt.title }}</div>
+            <div class="sub">({{ s.rt.subtitle }})</div>
+          </div>
         </div>
       </div>
 
-      <div class="title-group title-right">
-        <div class="letter" *ngFor="let ch of rightChars">
-          <div class="letter-inner">{{ ch }}</div>
+      <!-- RIGHT BOTTOM -->
+      <div class="slot slot-rb">
+        <div
+          class="layer"
+          *ngFor="let s of sets; let i = index"
+          data-slot="rb"
+          [attr.data-set]="i"
+        >
+          <div class="phone">
+            <div class="screen">
+              <img [src]="s.rb.img" [alt]="s.rb.title" />
+            </div>
+          </div>
+
+          <div class="meta">
+            <div class="name">{{ s.rb.title }}</div>
+            <div class="sub">({{ s.rb.subtitle }})</div>
+          </div>
         </div>
       </div>
     </div>

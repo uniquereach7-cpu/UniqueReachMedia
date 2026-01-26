@@ -1,71 +1,71 @@
+/* handstatic.css */
 :host { display:block; }
 
-.showcase{
+.two-worlds{
+  position:relative;
   width:100%;
-  min-height:100vh;
+  height:100vh;
   background:#c4c4b0;
   overflow:hidden;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 
   display:grid;
-  grid-template-rows: auto 1fr; /* key: remove the giant empty space */
+  grid-template-columns: 1fr clamp(240px, 26vw, 420px) 1fr;
+  align-items:center;
 }
 
-/* cards lane */
-.grid{
+.world{
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: clamp(18px, 3vw, 42px);
+}
+
+.void{
+  height: clamp(520px, 86vh, 860px);
+  width: 100%;
+  border-radius: 28px;
+  background: #0b0b0b;
+  box-shadow: 0 28px 80px rgba(0,0,0,0.25);
+}
+
+.stack{
+  width: min(420px, 30vw);
+  display:grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 18px;
+}
+
+.slot{
   position:relative;
-  z-index:2;
   width:100%;
-  max-width:1400px;
-  margin:0 auto;
-
-  padding: 7vh 24px 0;
-  display:grid;
-  grid-template-columns: repeat(4, minmax(220px, 1fr));
-  gap: clamp(12px, 1.2vw, 18px);
-  align-content:start;
+  aspect-ratio: 9 / 16;
 }
 
-.card{ min-width:0; }
-
-.copy{
-  height:48px;
-  padding: 0 6px 8px;
+/* each slot has multiple layers stacked, only one visible at a time */
+.layer{
+  position:absolute;
+  inset:0;
   display:flex;
   flex-direction:column;
-  justify-content:center;
+  gap: 10px;
+  pointer-events:none; /* GSAP will show/hide; keep simple */
+  will-change: transform, opacity;
 }
 
-.line{
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-}
-
-.line p{
-  margin:0 0 4px 0;
-  font-size:13px;
-  font-weight:650;
-  letter-spacing:0.2px;
-  line-height:1;
-  position:relative;
-  opacity:0.95;
-}
-
-/* phone-like frame */
-.frame{
-  aspect-ratio: 9 / 16;
-  width:100%;
-  border-radius: 26px;
-  padding: 12px;
+.phone{
+  flex: 1;
+  border-radius: 28px;
+  padding: 14px;
   background: rgba(255,255,255,0.25);
   box-shadow: 0 18px 50px rgba(0,0,0,0.14);
-  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); /* GSAP reveal target */
   overflow:hidden;
 }
 
 .screen{
   width:100%;
   height:100%;
-  border-radius: 18px;
+  border-radius: 20px;
   overflow:hidden;
   background:#efeede;
   display:flex;
@@ -76,71 +76,48 @@
 .screen img{
   width:100%;
   height:100%;
-  object-fit: contain; /* no crop */
+  object-fit: contain;
   object-position:center;
   display:block;
 }
 
-/* title lane sits immediately under cards */
-.title-lane{
-  position:relative;
-  z-index:1;
-  overflow:hidden;
+.meta{
+  height: 42px;
+  padding: 0 6px;
   display:flex;
-  align-items:flex-start;     /* title appears in the highlighted area, not at the bottom edge */
-  padding-top: clamp(12px, 2vh, 28px);
-}
-
-/* do NOT pin to bottom; keep it in-flow inside the title lane */
-.title{
-  position:relative;
-  width:100%;
-  display:flex;
-  pointer-events:none;
-}
-
-.title-group{
-  flex:1;
-  display:flex;
+  flex-direction:column;
   justify-content:center;
-  transform: scale(0.25);
-  transform-origin:center;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-.title-left{ position:relative; left:18vw; }
-.title-right{ position:relative; right:18vw; }
-
-.letter{
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-family: "Times New Roman", Times, serif;
-  font-weight:500;
-  font-size: clamp(72px, 10.8vw, 190px);
-  line-height:0.9;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+.name{
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  line-height: 1.05;
 }
 
-.letter-inner{ position:relative; }
+.sub{
+  font-size: 12px;
+  font-weight: 650;
+  opacity: 0.9;
+  line-height: 1.05;
+}
 
 /* responsive */
-@media (max-width: 1100px){
-  .grid{
-    grid-template-columns: repeat(2, minmax(240px, 1fr));
-    padding: 6vh 18px 0;
-    gap: 16px;
-  }
-  .title-group{ transform: scale(0.5); }
-  .title-left{ left:14vw; }
-  .title-right{ right:11vw; }
-  .title-lane{ padding-top: 18px; }
-}
-
-@media (max-width: 520px){
-  .grid{
+@media (max-width: 980px){
+  .two-worlds{
     grid-template-columns: 1fr;
-    padding: 5vh 14px 0;
+    grid-template-rows: auto auto auto;
+    height: auto;
+    padding: 22px 0;
+    row-gap: 18px;
   }
-  .title-lane{ padding-top: 16px; }
+  .void{
+    height: 260px;
+    margin: 0 18px;
+  }
+  .stack{
+    width: min(520px, 92vw);
+  }
 }
