@@ -30,7 +30,7 @@ function slotStyle(slot: number): SlotStyle {
   const sign = Math.sign(slot);
 
   //                 abs: 0      1      2      3      4
-  const X_PX      = [0,   160,   282,   374,   448];
+  const X_PX      = [0,   230,   405,   538,   645];
   const ROT_DEG   = [0,    12,    20,    27,    33];
   const SCALE_VAL = [1.00, 0.88,  0.76,  0.64,  0.52];
   const OPACITY   = [1.00, 0.73,  0.50,  0.30,  0.14];
@@ -58,8 +58,19 @@ function slotStyle(slot: number): SlotStyle {
 })
 export class handstatic implements AfterViewInit, OnDestroy {
 
+  private static readonly SCREENS = [
+    'assets/screens/screen1.webp',
+    'assets/screens/screen2.webp',
+    'assets/screens/screen3.webp',
+    'assets/screens/screen4.webp',
+    'assets/screens/screen5.webp',
+  ];
+
   /** Template data — one entry per card DOM element */
-  readonly cards = Array.from({ length: CARD_COUNT }, (_, i) => ({ id: i }));
+  readonly cards = Array.from({ length: CARD_COUNT }, (_, i) => ({
+    id: i,
+    image: handstatic.SCREENS[i % handstatic.SCREENS.length],
+  }));
 
   /** Signal query: all #cardEl references in order */
   readonly cardEls = viewChildren<ElementRef<HTMLElement>>('cardEl');

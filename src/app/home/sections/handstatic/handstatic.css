@@ -61,7 +61,7 @@
 .hs__stage {
   position: relative;
   width: 100%;
-  height: 480px;
+  height: 640px;
   /* overflow intentionally visible so far cards peek at edges */
 }
 
@@ -71,18 +71,18 @@
   /* horizontally center the card anchor */
   left: 50%;
   /* bottom anchor — transform-origin center-bottom pivots here */
-  bottom: 56px;
+  bottom: 60px;
   /* shift left by half card width so left:50% centres the card */
-  margin-left: -80px;
+  margin-left: -115px;
   /* GSAP manages all transform/opacity/filter */
   will-change: transform, opacity, filter;
   cursor: default;
 }
 
 .hs-card__frame {
-  width: 160px;
-  height: 260px;
-  border-radius: 18px;
+  width: 230px;
+  height: 380px;
+  border-radius: 22px;
   overflow: hidden;
   background: #0f0f14;
   box-shadow:
@@ -104,11 +104,17 @@
 /* ── Responsive ──────────────────────────────────── */
 @media (max-width: 768px) {
   .hs__stage {
-    height: 360px;
+    height: 480px;
   }
 
   .hs-card {
     bottom: 40px;
+    margin-left: -90px;
+  }
+
+  .hs-card__frame {
+    width: 180px;
+    height: 300px;
   }
 }
 
@@ -122,6 +128,15 @@
   }
 
   .hs__stage {
-    height: 300px;
+    height: 380px;
+  }
+
+  .hs-card {
+    margin-left: -70px;
+  }
+
+  .hs-card__frame {
+    width: 140px;
+    height: 230px;
   }
 }
