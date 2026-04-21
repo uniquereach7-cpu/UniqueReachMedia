@@ -1,160 +1,158 @@
-/* dev-hand.component.css */
+.showcase-bento {
+  background: #f7f8fa;
+  padding: 96px 20px;
+}
 
-.hand-pin {
-  background-image: url("/assets/phonescrool.png");
-  min-height: 240vh;
+.showcase-bento__inner {
+  width: min(100%, 1200px);
+  margin: 0 auto;
+}
+
+.showcase-bento__header {
+  max-width: 700px;
+  margin: 0 auto 42px;
+  text-align: center;
+}
+
+.showcase-bento__eyebrow {
+  margin: 0 0 10px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.showcase-bento__title {
+  margin: 0;
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: #0f172a;
+}
+
+.showcase-bento__subtitle {
+  margin: 12px auto 0;
+  max-width: 560px;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: #475569;
+}
+
+.showcase-bento__grid {
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 1.16fr) 1fr;
+  align-items: start;
+  gap: 24px;
+}
+
+.showcase-bento__stack {
+  display: grid;
+  gap: 24px;
+}
+
+.showcase-card {
   position: relative;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  border-radius: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
 }
 
-/* Mobile view */
-@media (max-width: 768px) {
-  .hand-pin {
-    background-image: url("/assets/mobilescrol.png");
-  }
+.showcase-card--screen {
+  aspect-ratio: 9 / 19;
 }
 
-
-.hand-pin__sticky{
-  position:sticky;
-  top:0;
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden; /* crop while zooming */
+.showcase-card--featured {
+  aspect-ratio: 9 / 18;
 }
 
-/* stage = single coordinate system for BOTH image + video */
-.hand-pin__stage{
-	padding-top: 30px;
-  position:relative;
-  width:min(1028.5px, 92vw);
-  padding-right: 40px;
-  display:block;
-  aspect-ratio: auto; /* let the image define height naturally */
-
-  /* zoom and framing */
-  --zoom: 1.35;
-  transform: scale(var(--zoom));
-  
-  transform-origin: 50% 50%;
-
-  pointer-events:none;
-  user-select:none;
-
-  /* screen placement knobs - adjusted for consistent alignment */
-  --screen-left: 48%;
-  --screen-top: 2.5%;
-  --screen-w: 20.4%;
-  --screen-h: 71.5%;
-  --screen-r: 30px;
-  --screen-inset: 6px;
-}
-
-/* frame image */
-.hand-pin__img{
-  width:100%;
-  height:auto !important;
-  display:block;
-  object-fit:cover;
-  object-position:center top;
-  position:relative;
-  z-index:2;
-}
-
-/* screen window */
-.hand-pin__screen{
-  position:absolute;
-  left:var(--screen-left);
-  top:var(--screen-top);
-  width:var(--screen-w);
-  height:var(--screen-h);
-  transform: translateX(-50%);
-  border-radius: var(--screen-r);
-  overflow:hidden;
-  z-index:1;
-
-  /* slight inset so video doesn't bleed into frame */
-  padding: var(--screen-inset);
-  box-sizing:border-box;
-  
-  /* ensure consistent sizing across viewports */
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-/* video */
-.hand-pin__video{
-  width:100%;
-  height:100%;
-  min-width:100%;
-  min-height:100%;
-  display:block;
-  object-fit:cover;
-  object-position:center center;
-  border-radius: calc(var(--screen-r) - var(--screen-inset));
-}
-
-/* mobile: place the hand/phone on the right like the reference */
-@media (max-width: 768px){
-  .hand-pin{
-    /* longer scroll section so it follows you */
-    min-height: 250svh;
-    margin: 0;
-    padding: 0;
-  }
-
-  .hand-pin__sticky{
+@media (min-width: 701px) {
+  .showcase-card--featured {
     position: sticky;
-    top: 0;
-    height: 100svh;
-    display: block;
-    overflow: hidden;
-  }
-
-  .hand-pin__stage{
-    position: absolute;
-    /* placement knobs for mobile */
-    right: -28vw;
-    bottom: 6svh;
-
-    width: min(980px, 170vw);
-    max-width: none;
-
-    /* adjust screen window for mobile - tighter fit */
-    --screen-left: 50%;
-    --screen-top: 0.5%;
-    --screen-w: 20.4%;
-    --screen-h: 71.5%;
-    --screen-r: 24px;
-    --screen-inset: 4px;
-  }
-
-  .hand-pin__img{
-    /* makes the hand look cleaner on dark bg */
-    filter: drop-shadow(0 18px 40px rgba(0,0,0,.45));
+    top: 96px;
+    align-self: start;
   }
 }
 
-/* very small phones */
-@media (max-width: 420px){
-  .hand-pin{ min-height: 200svh; }
+.showcase-card__label {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: rgba(255, 255, 255, 0.92);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #334155;
+}
 
-  .hand-pin__stage{
-    right: -53vw;
-    bottom: 20svh;
-    width: min(950px, 185vw);
+.showcase-card__media {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
 
-    /* tighter screen fit for small phones */
-    --screen-left: 47%;
-    --screen-top: 4.5%;
-    --screen-w: 20.4%;
-    --screen-h: 71.5%;
-    --screen-r: 22px;
-    --screen-inset: 4px;
+@media (hover: hover) and (pointer: fine) {
+  .showcase-card {
+    transition: transform 220ms ease, box-shadow 220ms ease;
+  }
+
+  .showcase-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.1);
+  }
+}
+
+
+
+@media (max-width: 700px) {
+  .showcase-bento {
+    padding: 64px 10px;
+  }
+
+  .showcase-bento__header {
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  .showcase-bento__subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .showcase-bento__grid {
+    grid-template-columns: 0.9fr 1fr 0.86fr;
+    gap: 10px;
+    align-items: start;
+  }
+
+  .showcase-bento__stack {
+    display: grid;
+    gap: 10px;
+  }
+
+  .showcase-card__label {
+    top: 10px;
+    left: 10px;
+    padding: 5px 8px;
+    font-size: 0.62rem;
+  }
+
+  .showcase-card--featured {
+    grid-column: auto;
+    justify-self: stretch;
+    width: auto;
+    align-self: start;
+    position: relative;
+    top: 0;
+    position: sticky;
   }
 }

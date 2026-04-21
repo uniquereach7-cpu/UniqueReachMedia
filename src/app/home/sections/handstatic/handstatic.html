@@ -1,16 +1,59 @@
-<!-- dev-hand.component.html -->
-<section class="hand-pin">
-  <div class="hand-pin__sticky">
-    <div class="hand-pin__stage">
-      <!-- video sits UNDER the frame -->
-      <div class="hand-pin__screen">
-        <!-- if using the TS above, add #phoneVid -->
-<video #phoneVid class="hand-pin__video" src="assets/phone2.mp4" autoplay muted loop playsinline webkit-playsinline></video>
+<section class="showcase-bento">
+  <div class="showcase-bento__inner">
+    <header class="showcase-bento__header">
+      <p class="showcase-bento__eyebrow">Media Showcase</p>
+      <h2 class="showcase-bento__title">Portrait-first campaign highlights</h2>
+      <p class="showcase-bento__subtitle">A refined gallery of motion and screen assets designed for vertical platforms.</p>
+    </header>
 
+    <div class="showcase-bento__grid">
+      <div class="showcase-bento__stack showcase-bento__stack--left">
+        <article class="showcase-card showcase-card--screen">
+          <span class="showcase-card__label">Screen 01</span>
+          <img class="showcase-card__media" src="assets/screens/screen.webp" alt="Campaign screen 01" />
+        </article>
+
+        <article class="showcase-card showcase-card--screen">
+          <span class="showcase-card__label">Screen 02</span>
+          <img class="showcase-card__media" src="assets/screens/screen.webp" alt="Campaign screen 02" />
+        </article>
+
+        <article class="showcase-card showcase-card--screen">
+          <span class="showcase-card__label">Screen 05</span>
+          <img class="showcase-card__media" src="assets/screens/screen.webp" alt="Campaign screen 05" />
+        </article>
       </div>
 
-      <!-- frame sits OVER the video -->
-      <img class="hand-pin__img" src="assets/hand.webp" alt="Hand holding phone" />
+      <article class="showcase-card showcase-card--featured">
+        <span class="showcase-card__label">Motion</span>
+        <video
+          #phoneVid
+          class="showcase-card__media"
+          src="assets/phone2.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          webkit-playsinline
+        ></video>
+      </article>
+
+      <div class="showcase-bento__stack showcase-bento__stack--right">
+        <article class="showcase-card showcase-card--screen">
+          <span class="showcase-card__label">Screen 03</span>
+          <img class="showcase-card__media" src="assets/screens/screen.webp" alt="Campaign screen 03" />
+        </article>
+
+        <article class="showcase-card showcase-card--screen">
+          <span class="showcase-card__label">Screen 04</span>
+          <img class="showcase-card__media" src="assets/screens/screen.webp" alt="Campaign screen 04" />
+        </article>
+
+        <article class="showcase-card showcase-card--screen">
+          <span class="showcase-card__label">Screen 06</span>
+          <img class="showcase-card__media" src="assets/screens/screen.webp" alt="Campaign screen 06" />
+        </article>
+      </div>
     </div>
   </div>
 </section>
