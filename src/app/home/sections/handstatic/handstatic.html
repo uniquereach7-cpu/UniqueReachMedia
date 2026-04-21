@@ -1,59 +1,26 @@
-<section class="showcase-bento">
-  <div class="showcase-bento__inner">
-    <header class="showcase-bento__header">
-      <p class="showcase-bento__eyebrow">Media Showcase</p>
-      <h2 class="showcase-bento__title">Portrait-first campaign highlights</h2>
-      <p class="showcase-bento__subtitle">A refined gallery of motion and screen assets designed for vertical platforms.</p>
-    </header>
+<section class="hs" aria-label="Campaign showcase carousel">
 
-    <div class="showcase-bento__grid">
-      <div class="showcase-bento__stack showcase-bento__stack--left">
-        <article class="showcase-card showcase-card--screen">
-          <span class="showcase-card__label">Screen 01</span>
-          <img class="showcase-card__media" src="assets/screens/screen.webp" alt="Campaign screen 01" />
-        </article>
-
-        <article class="showcase-card showcase-card--screen">
-          <span class="showcase-card__label">Screen 02</span>
-          <img class="showcase-card__media" src="assets/screens/screen.webp" alt="Campaign screen 02" />
-        </article>
-
-        <article class="showcase-card showcase-card--screen">
-          <span class="showcase-card__label">Screen 05</span>
-          <img class="showcase-card__media" src="assets/screens/screen.webp" alt="Campaign screen 05" />
-        </article>
-      </div>
-
-      <article class="showcase-card showcase-card--featured">
-        <span class="showcase-card__label">Motion</span>
-        <video
-          #phoneVid
-          class="showcase-card__media"
-          src="assets/phone2.mp4"
-          autoplay
-          muted
-          loop
-          playsinline
-          webkit-playsinline
-        ></video>
-      </article>
-
-      <div class="showcase-bento__stack showcase-bento__stack--right">
-        <article class="showcase-card showcase-card--screen">
-          <span class="showcase-card__label">Screen 03</span>
-          <img class="showcase-card__media" src="assets/screens/screen.webp" alt="Campaign screen 03" />
-        </article>
-
-        <article class="showcase-card showcase-card--screen">
-          <span class="showcase-card__label">Screen 04</span>
-          <img class="showcase-card__media" src="assets/screens/screen.webp" alt="Campaign screen 04" />
-        </article>
-
-        <article class="showcase-card showcase-card--screen">
-          <span class="showcase-card__label">Screen 06</span>
-          <img class="showcase-card__media" src="assets/screens/screen.webp" alt="Campaign screen 06" />
-        </article>
-      </div>
-    </div>
+  <div class="hs__header">
+    <span class="hs__kicker">Creative Portfolio</span>
+    <h2 class="hs__title">Campaigns That Move People</h2>
+    <p class="hs__sub">
+      From bold social campaigns to high-converting digital ads —
+      we craft stories that stick.
+    </p>
   </div>
+
+  <div class="hs__stage" #stage aria-hidden="true">
+    @for (card of cards; track card.id) {
+      <div class="hs-card" #cardEl>
+        <div class="hs-card__frame">
+          <img
+            src="assets/screens/screen.webp"
+            alt="Campaign poster"
+            draggable="false"
+          />
+        </div>
+      </div>
+    }
+  </div>
+
 </section>

@@ -1,158 +1,127 @@
-.showcase-bento {
-  background: #f7f8fa;
-  padding: 96px 20px;
+/* ── Host ────────────────────────────────────────── */
+:host {
+  display: block;
 }
 
-.showcase-bento__inner {
-  width: min(100%, 1200px);
-  margin: 0 auto;
-}
-
-.showcase-bento__header {
-  max-width: 700px;
-  margin: 0 auto 42px;
+/* ── Section ─────────────────────────────────────── */
+.hs {
+  padding: 80px 0 0;
   text-align: center;
-}
-
-.showcase-bento__eyebrow {
-  margin: 0 0 10px;
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-  color: #64748b;
-}
-
-.showcase-bento__title {
-  margin: 0;
-  font-size: clamp(1.7rem, 3vw, 2.3rem);
-  line-height: 1.2;
-  letter-spacing: -0.015em;
-  color: #0f172a;
-}
-
-.showcase-bento__subtitle {
-  margin: 12px auto 0;
-  max-width: 560px;
-  font-size: 0.98rem;
-  line-height: 1.65;
-  color: #475569;
-}
-
-.showcase-bento__grid {
-  display: grid;
-  grid-template-columns: 1fr minmax(280px, 1.16fr) 1fr;
-  align-items: start;
-  gap: 24px;
-}
-
-.showcase-bento__stack {
-  display: grid;
-  gap: 24px;
-}
-
-.showcase-card {
-  position: relative;
-  border-radius: 24px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  background: #ffffff;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
   overflow: hidden;
 }
 
-.showcase-card--screen {
-  aspect-ratio: 9 / 19;
+/* ── Header ──────────────────────────────────────── */
+.hs__header {
+  max-width: 760px;
+  margin: 0 auto 56px;
+  padding: 0 20px;
 }
 
-.showcase-card--featured {
-  aspect-ratio: 9 / 18;
-}
-
-@media (min-width: 701px) {
-  .showcase-card--featured {
-    position: sticky;
-    top: 96px;
-    align-self: start;
-  }
-}
-
-.showcase-card__label {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  z-index: 2;
-  padding: 6px 10px;
+.hs__kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
   border-radius: 999px;
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  background: rgba(255, 255, 255, 0.92);
-  font-size: 0.7rem;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #334155;
+  color: rgba(59, 10, 122, 0.85);
+  background: rgba(59, 10, 122, 0.07);
+  border: 1px solid rgba(59, 10, 122, 0.18);
 }
 
-.showcase-card__media {
+.hs__kicker::before,
+.hs__kicker::after {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background: rgba(59, 10, 122, 0.3);
+}
+
+.hs__title {
+  margin: 18px 0 14px;
+  font-size: clamp(36px, 4.5vw, 62px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: rgba(17, 24, 39, 0.92);
+  line-height: 1.05;
+}
+
+.hs__sub {
+  margin: 0 auto;
+  max-width: 560px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: rgba(17, 24, 39, 0.58);
+}
+
+/* ── Stage ───────────────────────────────────────── */
+.hs__stage {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  /* overflow intentionally visible so far cards peek at edges */
+}
+
+/* ── Cards ───────────────────────────────────────── */
+.hs-card {
+  position: absolute;
+  /* horizontally center the card anchor */
+  left: 50%;
+  /* bottom anchor — transform-origin center-bottom pivots here */
+  bottom: 56px;
+  /* shift left by half card width so left:50% centres the card */
+  margin-left: -80px;
+  /* GSAP manages all transform/opacity/filter */
+  will-change: transform, opacity, filter;
+  cursor: default;
+}
+
+.hs-card__frame {
+  width: 160px;
+  height: 260px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #0f0f14;
+  box-shadow:
+    0 2px 0 1px rgba(255, 255, 255, 0.10) inset,
+    0 24px 56px rgba(0, 0, 0, 0.28),
+    0 6px 14px rgba(0, 0, 0, 0.14);
+}
+
+.hs-card img {
   width: 100%;
   height: 100%;
-  display: block;
   object-fit: cover;
-  object-position: center;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .showcase-card {
-    transition: transform 220ms ease, box-shadow 220ms ease;
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 768px) {
+  .hs__stage {
+    height: 360px;
   }
 
-  .showcase-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.1);
+  .hs-card {
+    bottom: 40px;
   }
 }
 
-
-
-@media (max-width: 700px) {
-  .showcase-bento {
-    padding: 64px 10px;
+@media (max-width: 480px) {
+  .hs {
+    padding: 56px 0 0;
   }
 
-  .showcase-bento__header {
-    margin-bottom: 24px;
-    text-align: center;
+  .hs__header {
+    margin-bottom: 36px;
   }
 
-  .showcase-bento__subtitle {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .showcase-bento__grid {
-    grid-template-columns: 0.9fr 1fr 0.86fr;
-    gap: 10px;
-    align-items: start;
-  }
-
-  .showcase-bento__stack {
-    display: grid;
-    gap: 10px;
-  }
-
-  .showcase-card__label {
-    top: 10px;
-    left: 10px;
-    padding: 5px 8px;
-    font-size: 0.62rem;
-  }
-
-  .showcase-card--featured {
-    grid-column: auto;
-    justify-self: stretch;
-    width: auto;
-    align-self: start;
-    position: relative;
-    top: 0;
-    position: sticky;
+  .hs__stage {
+    height: 300px;
   }
 }
