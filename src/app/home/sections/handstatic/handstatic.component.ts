@@ -1,5 +1,5 @@
 // handstatic.component.ts
-import { Component, AfterViewInit, OnDestroy, viewChildren, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, viewChildren, ElementRef, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import gsap from 'gsap';
 
@@ -11,20 +11,14 @@ const MAX_SLOT   = Math.floor(CARD_COUNT / 2); // 4  →  slots: -4 … +4
 // ─── Slot visual config ───────────────────────────────────────────────────────
 
 interface SlotStyle {
-  x:         number;
-  rotation:  number;
-  scale:     number;
-  opacity:   number;
-  zIndex:    number;
-  filter:    string;
+  x:        number;
+  rotation: number;
+  scale:    number;
+  opacity:  number;
+  zIndex:   number;
+  filter:   string;
 }
 
-/**
- * Returns the GSAP-animatable properties for a card at the given slot position.
- * slot = 0  → center hero card
- * slot > 0  → right side  (positive rotation = clockwise tilt)
- * slot < 0  → left side   (negative rotation = counterclockwise tilt)
- */
 function slotStyle(slot: number): SlotStyle {
   const abs  = Math.abs(slot);
   const sign = Math.sign(slot);
@@ -58,6 +52,11 @@ function slotStyle(slot: number): SlotStyle {
 })
 export class handstatic implements AfterViewInit, OnDestroy {
 
+  /**
+   * ─── ADD / REMOVE SCREENS HERE ───────────────────────────────────────────
+   * The carousel loops through these in order, repeating from the first after
+   * the last. Add or remove entries freely — no other changes needed.
+   */
   private static readonly SCREENS = [
     'assets/screens/screen1.webp',
     'assets/screens/screen2.webp',
@@ -66,17 +65,24 @@ export class handstatic implements AfterViewInit, OnDestroy {
     'assets/screens/screen5.webp',
   ];
 
-  /** Template data — one entry per card DOM element */
+  // ── Card state ────────────────────────────────────────────────────────────
+
+  /** Each card's image is a signal so the template reacts when it is reassigned. */
   readonly cards = Array.from({ length: CARD_COUNT }, (_, i) => ({
     id: i,
-    image: handstatic.SCREENS[i % handstatic.SCREENS.length],
+    image: signal(handstatic.SCREENS[i % handstatic.SCREENS.length]),
   }));
 
-  /** Signal query: all #cardEl references in order */
   readonly cardEls = viewChildren<ElementRef<HTMLElement>>('cardEl');
 
-  /** slots[cardIndex] = current slot position of that card (-MAX_SLOT … +MAX_SLOT) */
+  /** slots[cardIndex] = current slot position (-MAX_SLOT … +MAX_SLOT) */
   private slots: number[] = [];
+
+  /**
+   * Tracks the next sequential image index to assign when a card wraps from
+   * far-left back to far-right. Starts after the initial CARD_COUNT images.
+   */
+  private imagePointer = CARD_COUNT;
 
   private timer: ReturnType<typeof setTimeout> | null = null;
   private alive = true;
@@ -84,7 +90,6 @@ export class handstatic implements AfterViewInit, OnDestroy {
   // ── Lifecycle ─────────────────────────────────────────────────────────────
 
   ngAfterViewInit(): void {
-    // Initialise slots: card 0 → slot -4, card 4 → slot 0 (center), card 8 → slot +4
     this.slots = this.cards.map((_, i) => i - MAX_SLOT);
     this.applyAll(true);
     this.scheduleNext();
@@ -93,30 +98,21 @@ export class handstatic implements AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.alive = false;
     if (this.timer) clearTimeout(this.timer);
-    const els = this.cardEls().map(r => r.nativeElement);
-    gsap.killTweensOf(els);
+    gsap.killTweensOf(this.cardEls().map(r => r.nativeElement));
   }
 
   // ── Animation ─────────────────────────────────────────────────────────────
 
-  /** Apply slot styles to all cards — instant (set) or animated (to). */
   private applyAll(instant = false): void {
     this.cardEls().forEach((ref, i) => {
       const s = slotStyle(this.slots[i]);
       const props = {
-        transformOrigin: '50% 100%', // pivot at card's bottom-center
-        x:        s.x,
-        rotation: s.rotation,
-        scale:    s.scale,
-        opacity:  s.opacity,
-        zIndex:   s.zIndex,
-        filter:   s.filter,
+        transformOrigin: '50% 100%',
+        x: s.x, rotation: s.rotation, scale: s.scale,
+        opacity: s.opacity, zIndex: s.zIndex, filter: s.filter,
       };
-      if (instant) {
-        gsap.set(ref.nativeElement, props);
-      } else {
-        gsap.to(ref.nativeElement, { ...props, duration: 0.32, ease: 'power2.inOut', overwrite: 'auto' });
-      }
+      if (instant) gsap.set(ref.nativeElement, props);
+      else gsap.to(ref.nativeElement, { ...props, duration: 0.65, ease: 'power2.inOut', overwrite: 'auto' });
     });
   }
 
@@ -125,13 +121,6 @@ export class handstatic implements AfterViewInit, OnDestroy {
     this.timer = setTimeout(() => this.advance(), 2000);
   }
 
-  /**
-   * Advance the carousel one step:
-   *   • All slots shift by –1  (cards logically move left)
-   *   • A card that would reach slot –(MAX_SLOT+1) wraps to +MAX_SLOT
-   *   • The incoming card (new center) gets an instant z-index boost so it
-   *     layers above the outgoing card during the 320 ms crossover.
-   */
   private advance(): void {
     if (!this.alive) return;
 
@@ -142,35 +131,41 @@ export class handstatic implements AfterViewInit, OnDestroy {
     const els = this.cardEls();
 
     els.forEach((ref, i) => {
-      const prevSlot = this.slots[i];
-      const nextSlot = newSlots[i];
-      const s        = slotStyle(nextSlot);
+      const prevSlot   = this.slots[i];
+      const nextSlot   = newSlots[i];
+      const isWrapping = prevSlot === -MAX_SLOT && nextSlot === MAX_SLOT;
+      const isIncoming = nextSlot === 0;
+      const isOutgoing = prevSlot === 0;
 
-      const isIncoming = nextSlot === 0;   // this card is becoming the hero
-      const isOutgoing = prevSlot === 0;   // this card is leaving the hero spot
+      if (isWrapping) {
+        // ── Recycled card ─────────────────────────────────────────────────
+        // Update image to the next one in the sequence (loops back to 0).
+        const nextImg = handstatic.SCREENS[this.imagePointer % handstatic.SCREENS.length];
+        this.cards[i].image.set(nextImg);
+        this.imagePointer++;
 
-      // Incoming card must render above the outgoing card during the swap.
-      if (isIncoming) {
-        gsap.set(ref.nativeElement, { zIndex: 11 });
+        // Instantly teleport to far-right — both edges share opacity 0.14
+        // so the jump is invisible to the viewer.
+        const s = slotStyle(MAX_SLOT);
+        gsap.set(ref.nativeElement, {
+          x: s.x, rotation: s.rotation, scale: s.scale,
+          opacity: s.opacity, zIndex: s.zIndex, filter: s.filter,
+        });
+        return; // no tween needed
       }
 
+      // ── Normal cards ───────────────────────────────────────────────────
+      const s = slotStyle(nextSlot);
+
+      if (isIncoming) gsap.set(ref.nativeElement, { zIndex: 11 });
+
       gsap.to(ref.nativeElement, {
-        x:        s.x,
-        rotation: s.rotation,
-        scale:    s.scale,
-        opacity:  s.opacity,
-        filter:   s.filter,
+        x: s.x, rotation: s.rotation, scale: s.scale,
+        opacity: s.opacity, filter: s.filter,
         duration: 0.65,
-        ease: isIncoming
-          ? 'power3.out'    // pop-forward feel for new hero
-          : isOutgoing
-          ? 'power2.in'     // ease-in as it recedes into the stack
-          : 'power2.inOut',
+        ease: isIncoming ? 'power3.out' : isOutgoing ? 'power2.in' : 'power2.inOut',
         overwrite: 'auto',
-        onComplete: () => {
-          // Settle to the canonical z-index once motion is done
-          gsap.set(ref.nativeElement, { zIndex: s.zIndex });
-        },
+        onComplete: () => { gsap.set(ref.nativeElement, { zIndex: s.zIndex }); },
       });
     });
 

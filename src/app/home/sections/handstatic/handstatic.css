@@ -61,7 +61,7 @@
 .hs__stage {
   position: relative;
   width: 100%;
-  height: 640px;
+  height: 440px;
   /* overflow intentionally visible so far cards peek at edges */
 }
 
