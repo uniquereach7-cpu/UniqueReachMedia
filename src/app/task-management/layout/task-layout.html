@@ -1,0 +1,69 @@
+<div class="tm-layout">
+  <aside class="tm-sidebar">
+    <div class="tm-brand">
+      <h2>Task System</h2>
+      <span>Internal Tool</span>
+    </div>
+
+    <nav class="tm-nav">
+      <a
+        routerLink="/task-management/dashboard"
+        routerLinkActive="active"
+      >
+        Dashboard
+      </a>
+
+      <a
+        *ngIf="isSuperAdmin()"
+        routerLink="/task-management/users"
+        routerLinkActive="active"
+      >
+        Users
+      </a>
+
+      <a
+        *ngIf="canViewAdminPages()"
+        routerLink="/task-management/clients"
+        routerLinkActive="active"
+      >
+        Clients
+      </a>
+
+      <a
+        *ngIf="canViewAdminPages()"
+        routerLink="/task-management/campaigns"
+        routerLinkActive="active"
+      >
+        Campaigns
+      </a>
+
+      <a
+        *ngIf="isSuperAdmin()"
+        routerLink="/task-management/audit-logs"
+        routerLinkActive="active"
+      >
+        Audit Logs
+      </a>
+    </nav>
+  </aside>
+
+  <main class="tm-main">
+    <header class="tm-topbar">
+      <div>
+        <h1>Internal Task Management</h1>
+        <p *ngIf="user">
+          Logged in as {{ user.fullName }} · {{ user.role }}
+          <span *ngIf="user.employeeType"> · {{ user.employeeType }}</span>
+        </p>
+      </div>
+
+      <button type="button" class="logout-btn" (click)="logout()">
+        Logout
+      </button>
+    </header>
+
+    <section class="tm-content">
+      <router-outlet></router-outlet>
+    </section>
+  </main>
+</div>

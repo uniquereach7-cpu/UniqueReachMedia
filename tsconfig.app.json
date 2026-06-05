@@ -8,7 +8,7 @@
   },
   "include": [
     "src/**/*.ts"
-  ],
+, "src/app/auth/login/login.ts.component"  ],
   "exclude": [
     "src/**/*.spec.ts"
   ]

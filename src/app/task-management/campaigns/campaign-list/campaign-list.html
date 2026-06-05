@@ -1,0 +1,142 @@
+<div class="page-header">
+  <div>
+    <h2>Campaigns</h2>
+    <p>Manage campaigns linked to clients.</p>
+  </div>
+
+  <a routerLink="/task-management/campaigns/create" class="primary-btn">
+    Create Campaign
+  </a>
+</div>
+
+<div class="filters-card">
+  <div class="filter-group">
+    <label>Search by campaign name</label>
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="applyFilters()"
+      placeholder="Search campaigns..."
+    />
+  </div>
+
+  <div class="filter-group">
+    <label>Client</label>
+    <select
+      [(ngModel)]="selectedClientId"
+      (ngModelChange)="applyFilters()"
+    >
+      <option value="ALL">All clients</option>
+      <option
+        *ngFor="let client of activeClients"
+        [value]="client.id"
+      >
+        {{ client.clientName }}
+      </option>
+    </select>
+  </div>
+
+  <div class="filter-group">
+    <label>Status</label>
+    <select
+      [(ngModel)]="selectedStatus"
+      (ngModelChange)="applyFilters()"
+    >
+      <option value="ALL">All</option>
+      <option value="ACTIVE">Active</option>
+      <option value="INACTIVE">Inactive</option>
+      <option value="COMPLETED">Completed</option>
+    </select>
+  </div>
+
+  <div class="filter-actions">
+    <button type="button" class="secondary-btn" (click)="clearFilters()">
+      Clear
+    </button>
+  </div>
+</div>
+
+<div class="error-message" *ngIf="errorMessage">
+  {{ errorMessage }}
+</div>
+
+<div class="table-card">
+  <div class="loading" *ngIf="loading">
+    Loading campaigns...
+  </div>
+
+  <table *ngIf="!loading">
+    <thead>
+      <tr>
+        <th>Campaign name</th>
+        <th>Client name</th>
+        <th>Start date</th>
+        <th>End date</th>
+        <th>Status</th>
+        <th>Created at</th>
+        <th class="actions-col">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let campaign of filteredCampaigns">
+        <td>{{ campaign.campaignName }}</td>
+        <td>{{ campaign.clientName }}</td>
+        <td>{{ campaign.startDate ? (campaign.startDate | date: 'mediumDate') : '-' }}</td>
+        <td>{{ campaign.endDate ? (campaign.endDate | date: 'mediumDate') : '-' }}</td>
+        <td>
+          <span
+            class="status-badge"
+            [class.active]="campaign.status === 'ACTIVE'"
+            [class.inactive]="campaign.status === 'INACTIVE'"
+            [class.completed]="campaign.status === 'COMPLETED'"
+          >
+            {{ campaign.status }}
+          </span>
+        </td>
+        <td>{{ campaign.createdAt | date: 'mediumDate' }}</td>
+        <td class="actions">
+          <a
+            [routerLink]="['/task-management/campaigns', campaign.id, 'edit']"
+            class="link-btn"
+          >
+            Edit
+          </a>
+
+          <button
+            *ngIf="campaign.status === 'ACTIVE'"
+            type="button"
+            class="danger-btn"
+            (click)="deactivateCampaign(campaign)"
+          >
+            Deactivate
+          </button>
+
+          <button
+            *ngIf="campaign.status === 'ACTIVE'"
+            type="button"
+            class="success-btn"
+            (click)="completeCampaign(campaign)"
+          >
+            Mark completed
+          </button>
+
+          <button
+            *ngIf="campaign.status === 'INACTIVE'"
+            type="button"
+            class="success-btn"
+            (click)="reactivateCampaign(campaign)"
+          >
+            Reactivate
+          </button>
+        </td>
+      </tr>
+
+      <tr *ngIf="filteredCampaigns.length === 0">
+        <td colspan="7" class="empty-state">
+          No campaigns found.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

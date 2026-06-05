@@ -1,0 +1,42 @@
+<div class="dashboard-page">
+  <div class="welcome-card">
+    <h2>Welcome to Task Management</h2>
+
+    <p *ngIf="canViewAdminPages()">
+      Manage clients and campaigns for internal operations.
+    </p>
+
+    <p *ngIf="isEmployee()">
+      Employee dashboard placeholder. Task views will be added in the next phase.
+    </p>
+  </div>
+
+  <div class="dashboard-grid" *ngIf="canViewAdminPages()">
+    <a class="dashboard-card" routerLink="/task-management/clients">
+      <h3>Clients</h3>
+      <p>Create, edit, deactivate, and manage client records.</p>
+    </a>
+
+    <a class="dashboard-card" routerLink="/task-management/campaigns">
+      <h3>Campaigns</h3>
+      <p>Create, edit, complete, and manage client campaigns.</p>
+    </a>
+  </div>
+
+  <div class="dashboard-grid" *ngIf="isSuperAdmin()">
+    <a class="dashboard-card" routerLink="/task-management/users">
+      <h3>Users</h3>
+      <p>Manage internal users, roles, and employee types.</p>
+    </a>
+
+    <a class="dashboard-card" routerLink="/task-management/audit-logs">
+      <h3>Audit Logs</h3>
+      <p>View important system activity history.</p>
+    </a>
+  </div>
+
+  <div class="employee-placeholder" *ngIf="isEmployee()">
+    <h3>No task screens yet</h3>
+    <p>Employee task boards will be added when work tasks are built.</p>
+  </div>
+</div>

@@ -1,0 +1,111 @@
+<div class="page-header">
+  <div>
+    <h2>{{ isEditMode ? 'Edit Campaign' : 'Create Campaign' }}</h2>
+    <p>
+      {{ isEditMode ? 'Update campaign details.' : 'Create a new campaign under an active client.' }}
+    </p>
+  </div>
+
+  <a routerLink="/task-management/campaigns" class="secondary-btn">
+    Back to Campaigns
+  </a>
+</div>
+
+<div class="form-card">
+  <div class="loading" *ngIf="loading">
+    Loading campaign...
+  </div>
+
+  <form *ngIf="!loading" (ngSubmit)="saveCampaign()">
+    <div class="error-message" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group full-width" *ngIf="!isEditMode">
+        <label>Client <span>*</span></label>
+        <select
+          name="clientId"
+          [(ngModel)]="clientId"
+          required
+        >
+          <option value="">Select active client</option>
+          <option
+            *ngFor="let client of activeClients"
+            [value]="client.id"
+          >
+            {{ client.clientName }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group full-width" *ngIf="isEditMode">
+        <label>Client</label>
+        <input
+          type="text"
+          [value]="clientName"
+          disabled
+        />
+        <small>Client cannot be changed after campaign creation.</small>
+      </div>
+
+      <div class="form-group full-width">
+        <label>Campaign name <span>*</span></label>
+        <input
+          type="text"
+          name="campaignName"
+          [(ngModel)]="campaignName"
+          placeholder="Enter campaign name"
+          required
+        />
+      </div>
+
+      <div class="form-group full-width">
+        <label>Description</label>
+        <textarea
+          name="description"
+          [(ngModel)]="description"
+          rows="4"
+          placeholder="Enter campaign description"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Start date</label>
+        <input
+          type="date"
+          name="startDate"
+          [(ngModel)]="startDate"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>End date</label>
+        <input
+          type="date"
+          name="endDate"
+          [(ngModel)]="endDate"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Status</label>
+        <select name="status" [(ngModel)]="status">
+          <option value="ACTIVE">Active</option>
+          <option value="INACTIVE">Inactive</option>
+          <option value="COMPLETED">Completed</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <a routerLink="/task-management/campaigns" class="cancel-btn">
+        Cancel
+      </a>
+
+      <button type="submit" class="primary-btn" [disabled]="saving">
+        {{ saving ? 'Saving...' : isEditMode ? 'Update Campaign' : 'Create Campaign' }}
+      </button>
+    </div>
+  </form>
+</div>

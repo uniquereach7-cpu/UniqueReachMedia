@@ -1,0 +1,104 @@
+.tm-layout {
+  min-height: 100vh;
+  display: flex;
+  background: #f4f6f8;
+  color: #111827;
+}
+
+.tm-sidebar {
+  width: 260px;
+  background: #111827;
+  color: #ffffff;
+  padding: 24px 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tm-brand {
+  margin-bottom: 32px;
+}
+
+.tm-brand h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.tm-brand span {
+  display: block;
+  margin-top: 6px;
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+.tm-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tm-nav a {
+  color: #d1d5db;
+  text-decoration: none;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.tm-nav a:hover {
+  background: #1f2937;
+  color: #ffffff;
+}
+
+.tm-nav a.active {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.tm-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.tm-topbar {
+  height: 82px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tm-topbar h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.tm-topbar p {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.logout-btn {
+  border: none;
+  background: #dc2626;
+  color: #ffffff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: #b91c1c;
+}
+
+.tm-content {
+  padding: 28px;
+}

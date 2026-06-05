@@ -1,0 +1,105 @@
+<div class="page-header">
+  <div>
+    <h2>{{ isEditMode ? 'Edit Client' : 'Create Client' }}</h2>
+    <p>
+      {{ isEditMode ? 'Update client details.' : 'Add a new client record.' }}
+    </p>
+  </div>
+
+  <a routerLink="/task-management/clients" class="secondary-btn">
+    Back to Clients
+  </a>
+</div>
+
+<div class="form-card">
+  <div class="loading" *ngIf="loading">
+    Loading client...
+  </div>
+
+  <form *ngIf="!loading" (ngSubmit)="saveClient()">
+    <div class="error-message" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group full-width">
+        <label>Client name <span>*</span></label>
+        <input
+          type="text"
+          name="clientName"
+          [(ngModel)]="clientName"
+          placeholder="Enter client name"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Contact person name</label>
+        <input
+          type="text"
+          name="contactPersonName"
+          [(ngModel)]="contactPersonName"
+          placeholder="Enter contact person"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Phone</label>
+        <input
+          type="text"
+          name="contactPhone"
+          [(ngModel)]="contactPhone"
+          placeholder="Enter phone number"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input
+          type="email"
+          name="contactEmail"
+          [(ngModel)]="contactEmail"
+          placeholder="Enter email"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Status</label>
+        <select name="status" [(ngModel)]="status">
+          <option value="ACTIVE">Active</option>
+          <option value="INACTIVE">Inactive</option>
+        </select>
+      </div>
+
+      <div class="form-group full-width">
+        <label>Address</label>
+        <textarea
+          name="address"
+          [(ngModel)]="address"
+          rows="3"
+          placeholder="Enter address"
+        ></textarea>
+      </div>
+
+      <div class="form-group full-width">
+        <label>Notes</label>
+        <textarea
+          name="notes"
+          [(ngModel)]="notes"
+          rows="4"
+          placeholder="Enter notes"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <a routerLink="/task-management/clients" class="cancel-btn">
+        Cancel
+      </a>
+
+      <button type="submit" class="primary-btn" [disabled]="saving">
+        {{ saving ? 'Saving...' : isEditMode ? 'Update Client' : 'Create Client' }}
+      </button>
+    </div>
+  </form>
+</div>
